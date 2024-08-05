@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logos/1-removebg-preview.png";
+import Dropdown from 'react-bootstrap/Dropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGears, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import {  signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const [activeItem, setActiveItem] = useState("");
@@ -9,88 +16,114 @@ export default function Header() {
     setActiveItem(item);
   };
 
+
+  const navigate = useNavigate();
+ 
+  const handleLogout = () => {               
+      signOut(auth).then(() => {
+          navigate("/welcome");
+          console.log("Signed out successfully")
+      }).catch((error) => {
+      });
+  }
   return (
-    <nav className="bg-white shadow-md p-4 pb-2 flex justify-between items-center">
-      <ul className="flex space-x-80 items-left ml-[-20px]">
-        <ul className="flex space-x-6 items-center justify-flex-start">
-          {" "}
-          <li>
-            <a href="#find-work">
-              <img src={logo} alt="Logo" className="h-10 pl--10" />
-            </a>
-          </li>
-          <li>
-            <a
-              href="#find-work"
-              className={`text-gray-700 hover:text-purple-500 ${
-                activeItem === "find-work" ? "text-purple-500" : ""
-              }`}
-              onClick={() => handleItemClick("find-work")}
-            >
-              Find Work
-            </a>
-          </li>
-          <li>
-            <a
-              href="#find-project"
-              className={`text-gray-700 hover:text-purple-500 ${
-                activeItem === "find-project" ? "text-purple-500" : ""
-              }`}
-              onClick={() => handleItemClick("find-project")}
-            >
-              Find Crew
-            </a>
-          </li>
-          <li>
-            <a
-              href="#make-group"
-              className={`text-gray-700 hover:text-purple-500 ${
-                activeItem === "make-group" ? "text-purple-500" : ""
-              }`}
-              onClick={() => handleItemClick("make-group")}
-            >
-              Make Group
-            </a>
-          </li>
-          <li>
-            <a
-              href="#about"
-              className={`text-gray-700 hover:text-purple-500 ${
-                activeItem === "about" ? "text-purple-500" : ""
-              }`}
-              onClick={() => handleItemClick("about")}
-            >
-              About
-            </a>
-          </li>
-        </ul>
-        <div className="flex items-center space-x-2 mr-10">
-          {" "}
-          <form className="flex">
-            <input
-              className="px-4 py-2 border border-gray-300 rounded-l-md"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="bg-gray-900 text-white px-4 py-2 rounded-r-md"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
-          <button className="bg-white-500 text-gray px-4 py-2 rounded-md">
+    <nav className="bg-white shadow-md p-3 pb-2 flex justify-between items-center position-fixed w-full">
+      <ul className="flex space-x-6 items-center">
+        <li>
+          <Link className="nav-link" to="/">
+            <img src={logo} alt="Logo" className="h-10" />
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/network"
+            className={`text-gray-700 hover:text-purple-500 ${
+              activeItem === "find-crew" ? "text-purple-500" : ""
+            }`}
+            onClick={() => handleItemClick("find-crew")}
+          >
+            Find Crew
+          </Link>
+        </li>
+        <li>
+          <a
+            href="#find-project"
+            className={`text-gray-700 hover:text-purple-500 ${
+              activeItem === "find-project" ? "text-purple-500" : ""
+            }`}
+            onClick={() => handleItemClick("find-project")}
+          >
+            Find Work
+          </a>
+        </li>
+        <li>
+          <a
+            href="#make-group"
+            className={`text-gray-700 hover:text-purple-500 ${
+              activeItem === "make-group" ? "text-purple-500" : ""
+            }`}
+            onClick={() => handleItemClick("make-group")}
+          >
+            Make Group
+          </a>
+        </li>
+        <li>
+          <Link
+            to="/portfolio"
+            className={`text-gray-700 hover:text-purple-500 ${
+              activeItem === "portfolio" ? "text-purple-500" : ""
+            }`}
+            onClick={() => handleItemClick("portfolio")}
+          >
+            Portfolio
+          </Link>
+        </li>
+      </ul>
+      <div className="flex items-center space-x-2">
+        <form className="flex">
+          <input
+            className="px-4 py-2 border border-gray-300 rounded-l-md"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button
+            className="bg-gray-900 text-white px-4 py-2 rounded-r-md"
+            type="submit"
+          >
+            Search
+          </button>
+        </form>
+        <Link className="nav-link" to="/login">
+          <button className="bg-white text-gray-900 px-4 py-2 rounded-md">
             Login
           </button>
+        </Link>
+        <Link className="nav-link" to="/register">
           <button className="bg-purple-500 text-white px-4 py-2 rounded-md">
             Signup
           </button>
-          <div className="flex items-center pl-5">
-          <FaUserCircle className="text-gray-500 hover:text-gray-900 text-4xl" />
+        </Link>
+        <div className="flex items-center pl-2 relative">
+          <Dropdown>
+            <Dropdown.Toggle as={FaUserCircle} id="dropdown" className="text-gray-500 hover:text-gray-900 text-4xl" />
+            <Dropdown.Menu className="absolute left-1/2 transform -translate-x-1/2 mt-2">
+              <Dropdown.Item href="#/profile">
+                <FontAwesomeIcon icon={faUser} className="mr-2" />
+                Profile
+              </Dropdown.Item>
+              <Dropdown.Item href="#/settings">
+                <FontAwesomeIcon icon={faGears} className="mr-2" />
+                Settings
+              </Dropdown.Item>
+              <Dropdown.Item href="/welcome" onClick={handleLogout}>
+                <FontAwesomeIcon icon={faRightFromBracket} className="mr-2" />
+                Logout
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
-        </div>
-      </ul>
+      </div>
     </nav>
   );
 }
