@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import logo from "../../assets/images/logos/1-removebg-preview.png";
+import { Link, useNavigate } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGears, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
-import {  signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
-import { useNavigate } from 'react-router-dom';
+import CustomToggle from '../specific/CustomToggle'; 
+import logo from "../../assets/images/logos/1-removebg-preview.png";
 
 export default function Header() {
   const [activeItem, setActiveItem] = useState("");
@@ -16,21 +15,22 @@ export default function Header() {
     setActiveItem(item);
   };
 
-
   const navigate = useNavigate();
  
   const handleLogout = () => {               
-      signOut(auth).then(() => {
-          navigate("/welcome");
-          console.log("Signed out successfully")
-      }).catch((error) => {
-      });
-  }
+    signOut(auth).then(() => {
+      navigate("/welcome");
+      console.log("Signed out successfully");
+    }).catch((error) => {
+      console.error("Sign out error", error);
+    });
+  };
+
   return (
-    <nav className="bg-white shadow-md p-3 pb-2 flex justify-between items-center position-fixed w-full">
+    <nav className="bg-white shadow-md p-3 pb-2 flex justify-between items-center w-full">
       <ul className="flex space-x-6 items-center">
         <li>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to="/home">
             <img src={logo} alt="Logo" className="h-10" />
           </Link>
         </li>
@@ -106,7 +106,7 @@ export default function Header() {
         </Link>
         <div className="flex items-center pl-2 relative">
           <Dropdown>
-            <Dropdown.Toggle as={FaUserCircle} id="dropdown" className="text-gray-500 hover:text-gray-900 text-4xl" />
+            <Dropdown.Toggle as={CustomToggle} id="dropdown" />
             <Dropdown.Menu className="absolute left-1/2 transform -translate-x-1/2 mt-2">
               <Dropdown.Item href="#/profile">
                 <FontAwesomeIcon icon={faUser} className="mr-2" />

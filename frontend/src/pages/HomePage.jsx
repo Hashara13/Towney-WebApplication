@@ -1,11 +1,17 @@
 import React from 'react'
+import HeroSection from '../components/specific/HeroSection'
+
+
 
 function HomePage() {
   return (
     <div>
-      <h1 className='mt-100'>Home</h1>
+   <HeroSection/>
+
     </div>
   )
 }
 
 export default HomePage
+
+
