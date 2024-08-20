@@ -30,7 +30,7 @@ export default function Header() {
     <nav className="bg-white shadow-md p-3 pb-2 flex justify-between items-center w-full">
       <ul className="flex space-x-6 items-center">
         <li>
-          <Link className="nav-link" to="/home">
+          <Link className="nav-link" to="/">
             <img src={logo} alt="Logo" className="h-10" />
           </Link>
         </li>

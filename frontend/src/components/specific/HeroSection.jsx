@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 function HeroSection() {
   return (
@@ -48,8 +49,10 @@ function HeroSection() {
                     </div>
                   </div>
                 </a>
+                <Link to='/create'>
+               
                 <a
-                  href="#"
+                  href=""
                   class="w-full sm:w-auto flex bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-blue-900 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
                 >
                   <svg
@@ -84,6 +87,7 @@ function HeroSection() {
                     </div>
                   </div>
                 </a>
+                </Link>
               </div>
             </div>
           </div>
