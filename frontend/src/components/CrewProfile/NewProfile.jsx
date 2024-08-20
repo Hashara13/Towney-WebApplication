@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import CreateProfile from "../specific/CreateProfile";
 
 const NewProfile = () => {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [birthdate, setBirthDate] = useState("");
+  const [availability, setAvailability] = useState("");
+  const [time, setTime] = useState("");
+  const [state, setState] = useState("");
+
   return (
     <div className="flex">
       <CreateProfile />
@@ -18,6 +25,7 @@ const NewProfile = () => {
               </label>
               <input
                 type="text"
+                onChange={(e)=>setName(e.target.value)}
                 id="name"
                 name="name"
                 placeholder="Name"
@@ -35,6 +43,8 @@ const NewProfile = () => {
               </label>
               <input
                 type="number"
+                onChange={(e)=>setAge(e.target.value)}
+
                 id="number"
                 name="number"
                 placeholder="Number"
@@ -42,8 +52,6 @@ const NewProfile = () => {
                                           text-gray-600 placeholder-gray-400 outline-none"
               />
             </div>
-
-         
 
             <div className="flex items-center mb-5">
               <label
@@ -54,6 +62,8 @@ const NewProfile = () => {
               </label>
               <input
                 type="date"
+                onChange={(e)=>setBirthDate(e.target.value)}
+
                 id="date"
                 name="date"
                 placeholder="Date"
@@ -71,6 +81,8 @@ const NewProfile = () => {
               </label>
               <input
                 type="month"
+                onChange={(e)=>setAvailability(e.target.value)}
+
                 id="month"
                 name="month"
                 placeholder="Month"
@@ -88,6 +100,8 @@ const NewProfile = () => {
               </label>
               <input
                 type="time"
+                onChange={(e)=>setTime(e.target.value)}
+
                 id="time"
                 name="time"
                 placeholder="Time"
@@ -95,8 +109,6 @@ const NewProfile = () => {
                                           text-gray-600 placeholder-gray-400 outline-none"
               />
             </div>
-
-    
 
             <div className="flex items-center mb-5">
               <label
@@ -107,6 +119,8 @@ const NewProfile = () => {
               </label>
               <select
                 id="select"
+                onChange={(e)=>setState(e.target.value)}
+
                 name="select"
                 className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                           text-gray-600 placeholder-gray-400 outline-none"
@@ -123,9 +137,26 @@ const NewProfile = () => {
               </select>
             </div>
 
-            <div className="text-right">
-              <button className="py-3 px-8 bg-green-400 text-white font-bold">
-                Submit
+            <div class="pt-2 flex items-center space-x-4">
+              <button class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
+                <svg
+                  class="w-6 h-6 mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>{" "}
+                Discard
+              </button>
+              <button class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">
+                Next
               </button>
             </div>
           </form>
