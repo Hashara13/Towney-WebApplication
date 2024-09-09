@@ -6,23 +6,36 @@ const production_userModel=require('./models/production_user')
 
 
 const app=express()
-app.use(cors())
+app.use(cors());
 app.use(express.json())
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 
 
-app.listen(3001,()=>{
+app.listen(5000,()=>{
     console.log("Server is started !")
 })
 
-app.post('/create/new',(req,res)=>{
-    production_userModel.create(
-        req.body
-    ).then(
-        users=>res.send(production_user)
-    ).catch(
-        production_user=>res.send(err)
-    )
-})
+app.post('/create/new', (req, res) => {
+    production_userModel.create(req.body)
+      .then((user) => res.status(201).send(user)) 
+      .catch((err) => {
+        console.error('Error creating user:', err);
+        res.status(500).send(err); 
+      });
+  });
+
+  app.get('/create', (req, res) => {
+    production_userModel.find({})
+      .then((user) => res.status(201).send(user)) 
+      .catch((err) => {
+        console.error('Error creating user:', err);
+        res.status(500).send(err); 
+      });
+  });

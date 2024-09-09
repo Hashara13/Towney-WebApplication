@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CreateProfile from "../specific/CreateProfile";
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 const NewProfile = () => {
   const [name, setName] = useState("");
@@ -9,26 +10,28 @@ const NewProfile = () => {
   const [availability, setAvailability] = useState("");
   const [time, setTime] = useState("");
   const [state, setState] = useState("");
-  const router=
 
-  const handleNext=(e)=>{
+
+  const handleNext = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/create/new',{})
-    .then(result=>console.log(result))
-    .catch(err=>console.log(err))
-      const newProfile=(
-        name,
-        age,
-        birthdate,
-        availability,
-        time,
-        state
-      )
-  
-    try{
 
-      }
-  }
+    const newProfile = {
+      name,
+      age,
+      birthdate,
+      availability,
+      time,
+      state
+    };
+
+    axios.post('http://localhost:3001/create/new', newProfile)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.error('There was an error!',err);
+      });
+  };
 return (
 
 
@@ -177,11 +180,12 @@ return (
                 </svg>{" "}
                 Discard
               </button>
+              <Link to='/network'>
               <button class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
-              // onPress={handleNext}
+              onClick={handleNext}
               >
                 Next
-              </button>
+              </button></Link>
             </div>
           </form>
         </div>
