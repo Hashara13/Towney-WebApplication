@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CreateProfile from "../specific/CreateProfile";
+import axios from 'axios'
 
 const NewProfile = () => {
   const [name, setName] = useState("");
@@ -8,22 +9,26 @@ const NewProfile = () => {
   const [availability, setAvailability] = useState("");
   const [time, setTime] = useState("");
   const [state, setState] = useState("");
-  // const router=
+  const router=
 
-  // const handleNext=()=>{
-  //     const newProfile=(
-  //       name,
-  //       age,
-  //       birthdate,
-  //       availability,
-  //       time,
-  //       state
-  //     )
+  const handleNext=(e)=>{
+    e.preventDefault();
+    axios.post('http://localhost:3001/create/new',{})
+    .then(result=>console.log(result))
+    .catch(err=>console.log(err))
+      const newProfile=(
+        name,
+        age,
+        birthdate,
+        availability,
+        time,
+        state
+      )
   
-  //   try{
+    try{
 
-  //     }
-  // }
+      }
+  }
 return (
 
 
@@ -32,7 +37,7 @@ return (
       <div className="flex-1 bg-white-200 py-3 px-10 min-h-screen">
         {" "}
         <div className="bg-white p-10 md:w-2/4 lg:w-1/2 mx-auto">
-          <form action="">
+          <form action="POST">
             <div className="flex items-center mb-5">
               <label
                 htmlFor="name"
@@ -62,9 +67,9 @@ return (
                 type="number"
                 onChange={(e)=>setAge(e.target.value)}
 
-                id="number"
-                name="number"
-                placeholder="Number"
+                id="age"
+                name="age"
+                placeholder="Enter Age"
                 className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                           text-gray-600 placeholder-gray-400 outline-none"
               />
@@ -81,9 +86,9 @@ return (
                 type="date"
                 onChange={(e)=>setBirthDate(e.target.value)}
 
-                id="date"
-                name="date"
-                placeholder="Date"
+                id="birthDate"
+                name="birthDate"
+                placeholder="birthDate"
                 className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                           text-gray-600 placeholder-gray-400 outline-none"
               />
@@ -100,9 +105,9 @@ return (
                 type="month"
                 onChange={(e)=>setAvailability(e.target.value)}
 
-                id="month"
-                name="month"
-                placeholder="Month"
+                id="avilability"
+                name="avilability"
+                placeholder="avilability"
                 className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                           text-gray-600 placeholder-gray-400 outline-none"
               />
@@ -138,7 +143,7 @@ return (
                 id="select"
                 onChange={(e)=>setState(e.target.value)}
 
-                name="select"
+                name="state"
                 className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                           text-gray-600 placeholder-gray-400 outline-none"
               >
