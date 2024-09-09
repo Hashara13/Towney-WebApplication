@@ -8,8 +8,25 @@ const NewProfile = () => {
   const [availability, setAvailability] = useState("");
   const [time, setTime] = useState("");
   const [state, setState] = useState("");
+  // const router=
 
-  return (
+  // const handleNext=()=>{
+  //     const newProfile=(
+  //       name,
+  //       age,
+  //       birthdate,
+  //       availability,
+  //       time,
+  //       state
+  //     )
+  
+  //   try{
+
+  //     }
+  // }
+return (
+
+
     <div className="flex">
       <CreateProfile />
       <div className="flex-1 bg-white-200 py-3 px-10 min-h-screen">
@@ -155,7 +172,9 @@ const NewProfile = () => {
                 </svg>{" "}
                 Discard
               </button>
-              <button class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">
+              <button class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+              // onPress={handleNext}
+              >
                 Next
               </button>
             </div>

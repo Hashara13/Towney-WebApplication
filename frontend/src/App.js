@@ -9,6 +9,7 @@ import AboutUs from './pages/AboutUs';
 import LandingPage from './pages/LandingPage';
 import CreateProfile from './components/specific/CreateProfile';
 import NewProfile from './components/CrewProfile/NewProfile';
+import AddRates from './components/CrewProfile/AddRates';
 import './App.css';
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
           <Route path="/welcome" element={<LandingPage />} />
           <Route path="/create" element={<CreateProfile />} />
           <Route path="/create/new" element={<NewProfile />} />
+          <Route path="/create/rates" element={<AddRates />} />
+
 
         </Routes>
       </div>
