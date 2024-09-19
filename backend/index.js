@@ -40,7 +40,7 @@ app.post('/create/new', (req, res) => {
       });
   });
 
-  app.get('/network:id', async (req, res) => {
+  app.get('/network/get/:id', async (req, res) => {
    try{
     const crewId=req.params.id;
     const Crew=await Production_userModel.findById(crewId);
@@ -50,6 +50,29 @@ app.post('/create/new', (req, res) => {
     res.status(500).send({ error: 'Failed to fetch lesson' });
   }
 });
+
+app.put('/network/update/:id', async (req, res) => {
+  try{
+   const crewId=req.params.id;
+   const Crew=await Production_userModel.findByIdAndUpdate(crewId);
+    res.status(201).send({status:'fetch success', Crew})
+  } catch (err) {
+   console.log(err);
+   res.status(500).send({ error: 'Failed to fetch lesson' });
+ }
+});
+
+app.delete('/network/update/:id', async (req, res) => {
+  try{
+   const crewId=req.params.id;
+   const Crew=await Production_userModel.findByIdAndUpdate(crewId);
+    res.status(201).send({status:'fetch success', Crew})
+  } catch (err) {
+   console.log(err);
+   res.status(500).send({ error: 'Failed to fetch lesson' });
+ }
+});
+
 
 
 
