@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CreateProfile from "../specific/CreateProfile";
-import axios from 'axios'
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const AddRates = () => {
@@ -12,9 +12,14 @@ const AddRates = () => {
   const [accom, setAccom] = useState("");
   const [travel, setTravel] = useState("");
   const [comm, setCommm] = useState("");
-  
+
   const handleNext = (e) => {
     e.preventDefault();
+
+    if (!dailyR || !hourlyR || !overR || !accom || !travel || !comm) {
+      alert("Please fill in all fields");
+      return;
+    }
 
     const newRate = {
       dailyR,
@@ -22,19 +27,20 @@ const AddRates = () => {
       hourlyR,
       accom,
       travel,
-      comm
+      comm,
     };
 
-    axios.post('http://localhost:3001/create/rates', newRate)
+    axios
+      .post("http://localhost:3001/create/rates", newRate)
       .then((result) => {
         console.log(result);
+        navigate("/summary");
       })
       .catch((err) => {
-        console.error('There was an error!',err);
+        console.error("There was an error!", err);
       });
-      navigate("/create/rates");
-
   };
+
   return (
  
     <div className="flex">

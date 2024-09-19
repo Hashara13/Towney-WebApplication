@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CreateProfile from "../specific/CreateProfile";
-import axios from 'axios'
-import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import {Link, useNavigate } from "react-router-dom";
 
 const NewProfile = () => {
   const navigate = useNavigate();
@@ -13,9 +13,13 @@ const NewProfile = () => {
   const [time, setTime] = useState("");
   const [state, setState] = useState("");
 
-
   const handleNext = (e) => {
     e.preventDefault();
+
+    if (!name || !age || !birthdate || !availability || !time || !state) {
+      alert("Please fill in all fields");
+      return;
+    }
 
     const newProfile = {
       name,
@@ -23,18 +27,18 @@ const NewProfile = () => {
       birthdate,
       availability,
       time,
-      state
+      state,
     };
 
-    axios.post('http://localhost:3001/create/new', newProfile)
+    axios
+      .post("http://localhost:3001/create/new", newProfile)
       .then((result) => {
         console.log(result);
+        navigate("/create/rates");
       })
       .catch((err) => {
-        console.error('There was an error!',err);
+        console.error("There was an error!", err);
       });
-      navigate("/create/rates");
-
   };
 return (
 
