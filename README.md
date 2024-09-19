@@ -1,6 +1,8 @@
 # Towney Web Application
+<p align="center">
 
-![Towney Logo](./frontend//src//assets//images//logos/lg-2.png) 
+  <img src="./frontend//src//assets//images//logos/lg-2.png" alt="Towney Logo" width="300" />
+</p> 
 
 Towney is an innovative platform that helps you find and connect with top production teams to turn your scripts and ideas into reality. Whether you're working on a film, advertisement, or any media project, Towney simplifies the process of bringing your vision to life.
 
