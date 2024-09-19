@@ -2,7 +2,7 @@ const express=require('express')
 const cors=require('cors')
 const mongoose=require('mongoose')
 require('dotenv').config();
-const production_userModel=require('./models/production_user')
+const Production_userModel=require('./models/production_user')
 
 
 const app=express()
@@ -23,7 +23,7 @@ app.listen(5000,()=>{
 })
 
 app.post('/create/new', (req, res) => {
-    production_userModel.create(req.body)
+    Production_userModel.create(req.body)
       .then((user) => res.status(201).send(user)) 
       .catch((err) => {
         console.error('Error creating user:', err);
@@ -32,7 +32,7 @@ app.post('/create/new', (req, res) => {
   });
 
   app.get('/create', (req, res) => {
-    production_userModel.find({})
+    Production_userModel.find({})
       .then((user) => res.status(201).send(user)) 
       .catch((err) => {
         console.error('Error creating user:', err);

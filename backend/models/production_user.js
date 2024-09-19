@@ -9,6 +9,6 @@ const production_userSchema = new mongoose.Schema({
   state: { type: String, required: true } 
 });
 
-const production_userModel = mongoose.model('production_user', production_userSchema);
+const Production_userModel = mongoose.model('production_user', production_userSchema);
 
-module.exports = production_userModel;
+module.exports = Production_userModel;
