@@ -31,7 +31,7 @@ app.post('/create/new', (req, res) => {
       });
   });
 
-  app.get('/create', (req, res) => {
+  app.get('/network', (req, res) => {
     Production_userModel.find({})
       .then((user) => res.status(201).send(user)) 
       .catch((err) => {
@@ -39,3 +39,17 @@ app.post('/create/new', (req, res) => {
         res.status(500).send(err); 
       });
   });
+
+  app.get('/network:id', async (req, res) => {
+   try{
+    const crewId=req.params.id;
+    const Crew=await Production_userModel.findById(crewId);
+     res.status(201).send({status:'fetch success', Crew})
+   } catch (err) {
+    console.log(err);
+    res.status(500).send({ error: 'Failed to fetch lesson' });
+  }
+});
+
+
+

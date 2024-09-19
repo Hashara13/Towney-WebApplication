@@ -5,29 +5,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGears, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
-import CustomToggle from '../specific/CustomToggle'; 
+import CustomToggle from '../specific/CustomToggle';
 import logo from "../../assets/images/logos/1-removebg-preview.png";
 
 export default function Header() {
   const [activeItem, setActiveItem] = useState("");
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
     return () => unsubscribe();
   }, []);
- 
+
   const handleItemClick = (item) => {
     setActiveItem(item);
   };
 
-  const handleLogout = () => {               
+  const handleLogout = () => {
     signOut(auth).then(() => {
       navigate("/welcome");
-      console.log("Signed out successfully");
     }).catch((error) => {
       console.error("Sign out error", error);
     });
@@ -39,6 +38,42 @@ export default function Header() {
         <li>
           <Link className="nav-link" to="/">
             <img src={logo} alt="Logo" className="h-10" />
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/network"
+            className={`text-gray-700 hover:text-purple-500 ${activeItem === "find-crew" ? "text-purple-500" : ""}`}
+            onClick={() => handleItemClick("find-crew")}
+          >
+            Find Crew
+          </Link>
+        </li>
+        <li>
+          <a
+            href="#find-project"
+            className={`text-gray-700 hover:text-purple-500 ${activeItem === "find-project" ? "text-purple-500" : ""}`}
+            onClick={() => handleItemClick("find-project")}
+          >
+            Find Work
+          </a>
+        </li>
+        <li>
+          <a
+            href="#make-group"
+            className={`text-gray-700 hover:text-purple-500 ${activeItem === "make-group" ? "text-purple-500" : ""}`}
+            onClick={() => handleItemClick("make-group")}
+          >
+            Make Group
+          </a>
+        </li>
+        <li>
+          <Link
+            to="/portfolio"
+            className={`text-gray-700 hover:text-purple-500 ${activeItem === "portfolio" ? "text-purple-500" : ""}`}
+            onClick={() => handleItemClick("portfolio")}
+          >
+            Portfolio
           </Link>
         </li>
       </ul>
