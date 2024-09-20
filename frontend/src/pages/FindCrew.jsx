@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import ProFicImage from "../assets/images/logos/pro.jpg";
 function FindCrew() {
   const [producers, setProducers] = useState([]);
   const [fileterProducers, setfileterProducers] = useState([]);
-  const [searchText, setSearchTexts] = useState('');
-
+  const [searchText, setSearchTexts] = useState("");
 
   useEffect(() => {
     const viewProducers = () => {
@@ -22,30 +22,28 @@ function FindCrew() {
     };
     viewProducers();
   }, []);
-  
- 
-  const handleSearch=(e)=>{
-    const searchInput=e.target.value.toLowerCase();
+
+  const handleSearch = (e) => {
+    const searchInput = e.target.value.toLowerCase();
     setSearchTexts(searchInput);
 
-    if(searchInput===''){
-      setfileterProducers(producers);    }
-    else{
-      const filteredInput = producers.filter(producer =>
-        producer.name.toLowerCase().includes(searchInput) ||
-        producer.state.toLowerCase().includes(searchInput) 
+    if (searchInput === "") {
+      setfileterProducers(producers);
+    } else {
+      const filteredInput = producers.filter(
+        (producer) =>
+          producer.name.toLowerCase().includes(searchInput) ||
+          producer.state.toLowerCase().includes(searchInput)
         // producer.rates.toString().toLowerCase().includes(searchInput)
       );
-      
-      
+
       setfileterProducers(filteredInput);
     }
-
-  }
+  };
 
   return (
     <div className="flex-1">
-       <div className="flex justify-center mt-3 mb-4">
+      <div className="flex justify-center mt-3 mb-4">
         <input
           type="text"
           placeholder="Search crew members"
@@ -56,11 +54,13 @@ function FindCrew() {
       </div>
       {fileterProducers.map((producer, name, index, availability) => (
         <div
-          className="ml-2 flex w-1/2 bg-white shadow mt-6 rounded-lg p-2"
-          key={producer._id || index}        >
+          className="ml-2 flex w-1/2 bg-white align-items-center shadow mt-6 rounded-lg p-2"
+          key={producer._id || index}
+        >
           <img
-            src="https://images.unsplash.com/photo-1439130490301-25e322d88054?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1189&amp;q=80"
-            alt="Just a flower"
+            src={ProFicImage}
+            alt="Profile Pic
+"
             className="w-16 object-cover h-16 rounded-xl"
           />
           <div className="flex flex-col justify-center w-full px-2 py-1">
@@ -93,11 +93,16 @@ function FindCrew() {
                 >
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
-                <p className="font-normal">{producer.availability}</p>
+                <p className="font-normal mt-3">
+                  Available: {producer.availability}
+                </p>
               </div>
               <div className="flex items-center font-medium text-gray-900">
-                $1800
-                <span className="text-gray-400 text-sm font-normal"> /wk</span>
+                Hire
+                <span className="ml-3 text-gray-400 text-sm font-normal">
+                  {" "}
+                  $1900/wk
+                </span>
               </div>
             </div>
           </div>
