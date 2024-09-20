@@ -47,12 +47,13 @@ app.post('/create/new', (req, res) => {
 
   app.get('/network', async (req, res) => {
     try {
-      const { name, state } = req.query;
+      const { name, state ,performRole} = req.query;
 
       const query = {};
   
       if (name) query.name = { $regex: name, $options: 'i' };
       if (state) query.state = state;
+      if (performRole) query.performRole = performRole;
   
       const crewMembers = await Production_userModel.find(query).populate('name').exec();
       res.status(200).json(crewMembers);

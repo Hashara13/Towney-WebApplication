@@ -12,11 +12,13 @@ const NewProfile = () => {
   const [availability, setAvailability] = useState("");
   const [time, setTime] = useState("");
   const [state, setState] = useState("");
+  const [performRole, setPerformRole] = useState("");
+
 
   const handleNext = (e) => {
     e.preventDefault();
 
-    if (!name || !age || !birthdate || !availability || !time || !state) {
+    if (!name || !age || !birthdate || !availability || !time || !state||performRole) {
       alert("Please fill in all fields");
       return;
     }
@@ -27,6 +29,7 @@ const NewProfile = () => {
       birthdate,
       availability,
       time,
+      performRole,
       state,
     };
 
@@ -169,7 +172,31 @@ return (
                 <option>Northern</option>
               </select>
             </div>
+            <div className="flex items-center mb-5">
+              <label
+                htmlFor="select"
+                className="inline-block w-20 mr-6 text-right font-bold text-gray-600"
+              >
+                Performing Role
+              </label>
+              <select
+                id="select"
+                onChange={(e)=>setState(e.target.value)}
 
+                name="state"
+                className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
+                                          text-gray-600 placeholder-gray-400 outline-none"
+              >
+                <option>Producer</option>
+                <option>Screen Writer</option>
+                <option>Camera Crew Member</option>
+                <option>Sound Engineer</option>
+                <option>Costume Designer</option>
+                <option>Flyer Designer</option>
+                <option>VFX</option>
+          
+              </select>
+            </div>
             <div class="pt-2 flex items-center space-x-4">
               <button class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
                 <svg

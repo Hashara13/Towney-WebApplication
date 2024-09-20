@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const production_userSchema = new mongoose.Schema({
   userId: { type: String, required: true },
   name: { type: String, required: true },
+  performRole:{ type: String, required: true },
   age: { type: Number, required: true },
   birthDate: { type: Date, required: true },
   availability: { type: String, required: true }, 
