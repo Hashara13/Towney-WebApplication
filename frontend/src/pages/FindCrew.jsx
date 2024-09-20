@@ -28,9 +28,8 @@ function FindCrew() {
     const searchInput=e.target.value.toLowerCase();
     setSearchTexts(searchInput);
 
-    if(searchInput==''){
-      setfileterProducers(producers);
-    }
+    if(searchInput===''){
+      setfileterProducers(producers);    }
     else{
       const filteredInput = producers.filter(producer =>
         producer.name.toLowerCase().includes(searchInput) ||
@@ -58,8 +57,7 @@ function FindCrew() {
       {fileterProducers.map((producer, name, index, availability) => (
         <div
           className="ml-2 flex w-1/2 bg-white shadow mt-6 rounded-lg p-2"
-          key={producer.id || index}
-        >
+          key={producer._id || index}        >
           <img
             src="https://images.unsplash.com/photo-1439130490301-25e322d88054?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1189&amp;q=80"
             alt="Just a flower"

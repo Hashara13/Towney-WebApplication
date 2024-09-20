@@ -36,31 +36,31 @@ app.post('/create/new', (req, res) => {
       });
   });
 
-  app.get('/network', (req, res) => {
-    Production_userModel.find({})
-      .then((user) => res.status(201).send(user)) 
-      .catch((err) => {
-        console.error('Error creating user:', err);
-        res.status(500).send(err); 
-      });
-  });
-
-  // app.get('/network', async (req, res) => {
-  //   try {
-  //     const query = {};
-  //     const { name, state, rate } = req.query;
-  
-  //     if (name) query.name = { $regex: name, $options: 'i' };
-  //     if (state) query.state = state;
-  //     if (rate) query.rate = rate;
-  
-  //     const crewMembers = await Production_userModel.find(query).populate('rates').exec();
-  //     res.status(200).json(crewMembers);
-  //   } catch (err) {
-  //     console.error('Error fetching crew members:', err);
-  //     res.status(500).json({ error: 'An error occurred while fetching crew members.' });
-  //   }
+  // app.get('/network', (req, res) => {
+  //   Production_userModel.find({})
+  //     .then((user) => res.status(201).send(user)) 
+  //     .catch((err) => {
+  //       console.error('Error creating user:', err);
+  //       res.status(500).send(err); 
+  //     });
   // });
+
+  app.get('/network', async (req, res) => {
+    try {
+      const { name, state } = req.query;
+
+      const query = {};
+  
+      if (name) query.name = { $regex: name, $options: 'i' };
+      if (state) query.state = state;
+  
+      const crewMembers = await Production_userModel.find(query).populate('name').exec();
+      res.status(200).json(crewMembers);
+    } catch (err) {
+      console.error('Error fetching crew members:', err);
+      res.status(500).json({ error: 'An error occurred while fetching crew members.' });
+    }
+  });
   
   
 
