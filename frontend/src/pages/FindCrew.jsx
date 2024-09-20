@@ -54,7 +54,7 @@ function FindCrew() {
       </div>
       {fileterProducers.map((producer, name, index, availability) => (
         <div
-          className="ml-2 flex w-1/2 bg-white align-items-center shadow mt-6 rounded-lg p-2"
+          className="ml-5 flex w-1/2 bg-gray-100 border-gray-900 align-items-center shadow mt-6 rounded-lg p-2"
           key={producer._id || index}
         >
           <img
@@ -98,7 +98,8 @@ function FindCrew() {
                 </p>
               </div>
               <div className="flex items-center font-medium text-gray-900">
-                Hire
+                <button className='bg-purple-800 text-gray-100 px-4 py-2 rounded-md'>Hire</button>
+                
                 <span className="ml-3 text-gray-400 text-sm font-normal">
                   {" "}
                   $1900/wk
