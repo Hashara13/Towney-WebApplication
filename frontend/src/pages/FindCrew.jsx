@@ -64,8 +64,13 @@ function FindCrew() {
             className="w-16 object-cover h-16 rounded-xl"
           />
           <div className="flex flex-col justify-center w-full px-2 py-1">
+
             <div className="flex justify-between items-center">
+            <Link to='/profile:id'>
+
               <h2 className="text-sm font-medium  text-gray-900">{producer.name}</h2>
+              </Link>
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-gray-500 hover:text-blue-400 cursor-pointer"
@@ -81,7 +86,6 @@ function FindCrew() {
                 />
               </svg>
             </div>
-      
             <div className="flex pt-2 text-sm text-purple-600">
               <div className="flex-3 mr-auto">
                 <p className="font-normal"> {producer.performRole}</p>
