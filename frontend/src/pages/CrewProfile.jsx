@@ -3,7 +3,7 @@ import React from 'react'
 
 const CrewProfile = () => {
   return (
-<div className="bg-gray-100">
+<div className="bg-gray-100 mt-0">
       <div className="container mx-auto my-5 p-5">
         <div className="md:flex no-wrap md:-mx-2">
           <div className="w-full md:w-3/12 md:mx-2">
@@ -16,8 +16,8 @@ const CrewProfile = () => {
                 />
               </div>
               <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">Suresh Silva</h1>
-              <h3 className="text-gray-600 font-lg text-semibold leading-6">Cinematographer</h3>
-              <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
+              <h3 className="text-purple-600 font-sm text-semibold leading-6">Cinematographer</h3>
+              <p className="text-sm text-gray-500 hover:text-gray-600 leading-6 flex justify-start">
                 Experience spanning over 10 years in the film industry, working on multiple local and international productions.
               </p>
               <ul className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
@@ -37,7 +37,9 @@ const CrewProfile = () => {
                 </li>
                 <li className="flex items-center py-3">
                   <span>Email</span>
-                  <span className="ml-auto">suresh.silva@gmail.com</span>
+                  <a href="mailto:suresh@example.com" className="ml-auto">
+
+                  <span className="ml-auto">suresh.silva@gmail.com</span></a>
                 </li>
               </ul>
             </div>
@@ -65,38 +67,28 @@ const CrewProfile = () => {
                 <span className="tracking-wide">About</span>
               </div>
               <div className="text-gray-700">
-                <div className="grid md:grid-cols-2 text-sm">
+                <div className="grid md:grid-cols-2 text-sm ">
                   <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">First Name</div>
-                    <div className="px-4 py-2">Suresh</div>
+                    <div className="px-4 py-2 font-semibold flex">First Name</div>
+                    <div className="px-4 py-2 flex">Suresh</div>
                   </div>
                   <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Last Name</div>
-                    <div className="px-4 py-2">Silva</div>
+                    <div className="px-4 py-2 font-semibold flex">Last Name</div>
+                    <div className="px-4 py-2 flex">Silva</div>
                   </div>
                   <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Gender</div>
-                    <div className="px-4 py-2">Male</div>
+                    <div className="px-4 py-2 font-semibold flex">Gender</div>
+                    <div className="px-4 py-2 flex">Male</div>
                   </div>
+               
                   <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Contact No.</div>
-                    <div className="px-4 py-2">+94 771234567</div>
+                    <div className="px-4 py-2 font-semibold flex">Current Address</div>
+                    <div className="px-4 py-2 flex">Colombo, Sri Lanka</div>
                   </div>
+                
                   <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Current Address</div>
-                    <div className="px-4 py-2">Colombo, Sri Lanka</div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Email</div>
-                    <div className="px-4 py-2">
-                      <a href="mailto:suresh@example.com" className="text-blue-800">
-                        suresh@example.com
-                      </a>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Birthday</div>
-                    <div className="px-4 py-2">April 10, 1985</div>
+                    <div className="px-4 py-2 font-semibold flex">Birthday</div>
+                    <div className="px-4 py-2 flex">April 10, 1985</div>
                   </div>
                 </div>
               </div>
