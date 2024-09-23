@@ -3,8 +3,8 @@ import React from 'react'
 
 const CrewProfile = () => {
   return (
-<div className="bg-gray-100 mt-0">
-      <div className="container mx-auto my-5 p-5">
+<div className="bg-gray-200 mt-[-50px]">
+<div className="container mx-auto my-5 p-5">
         <div className="md:flex no-wrap md:-mx-2">
           <div className="w-full md:w-3/12 md:mx-2">
             <div className="bg-white p-3 border-t-4 border-purple-400">
@@ -115,16 +115,49 @@ const CrewProfile = () => {
                     />
                   </svg>
                 </span>
+                <span className="tracking-wide">Pricing</span>
+              </div>
+              <ul className="list-inside space-y-2">
+                <li>
+                  <div className="text-teal-600 flex">Basic</div>
+                  <div className="text-gray-500 text-xs flex">$200</div>
+                </li>
+                <li>
+                  <div className="text-teal-600 flex">Assistant Cinematographer at ABC Productions</div>
+                  <div className="text-gray-500 text-xs flex">June 2012 - Dec 2014</div>
+                </li>
+              </ul>
+            </div>
+
+
+            <div className="bg-white p-3 shadow-sm rounded-sm mt-4">
+              <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                <span className="text-green-500">
+                  <svg
+                    className="h-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </span>
                 <span className="tracking-wide">Experience</span>
               </div>
               <ul className="list-inside space-y-2">
                 <li>
-                  <div className="text-teal-600">Cinematographer at XYZ Films</div>
-                  <div className="text-gray-500 text-xs">Jan 2015 - Present</div>
+                  <div className="text-teal-600 flex">Cinematographer at XYZ Films</div>
+                  <div className="text-gray-500 text-xs flex">Jan 2015 - Present</div>
                 </li>
                 <li>
-                  <div className="text-teal-600">Assistant Cinematographer at ABC Productions</div>
-                  <div className="text-gray-500 text-xs">June 2012 - Dec 2014</div>
+                  <div className="text-teal-600 flex">Assistant Cinematographer at ABC Productions</div>
+                  <div className="text-gray-500 text-xs flex">June 2012 - Dec 2014</div>
                 </li>
               </ul>
             </div>
