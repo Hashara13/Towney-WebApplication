@@ -129,7 +129,7 @@ const CrewProfile = () => {
                 </li>
                 <li>
                   <div className="text-teal-600 flex">Premium</div>
-                  <div className="text-gray-500 text-xs flex">$1400</div>
+                  <div className="text-gray-500 text-xs flex">$1500</div>
                 </li>
                 </div>
 
