@@ -88,7 +88,7 @@ const CrewProfile = () => {
                 
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold flex">Birthday</div>
-                    <div className="px-4 py-2 flex">April 10, 1985</div>
+                    <div className="px-4 py-2 flex">April 10, 1995</div>
                   </div>
                 </div>
               </div>
