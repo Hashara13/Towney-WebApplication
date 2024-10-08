@@ -25,7 +25,7 @@ function HeroSection() {
           <div className="mt-10 w-full flex max-w-md mx-auto lg:mx-0">
             <div className="flex sm:flex-row flex-col gap-5 w-full">
               <div class="justify-center items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-              <Link to='/create'>
+              <Link to='/network'>
                 <a
                   href="#"
                   class="w-full sm:w-auto flex bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
