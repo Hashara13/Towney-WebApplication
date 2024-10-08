@@ -102,13 +102,13 @@ const CrewCategories = () => {
                   name: "Costume Designer",
                   role: "Producers",
                   imgSrc:
-                    "https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png",
+                    "https://tailone.tailwindtemplate.net/src/img/dummy/avatar4.png",
                 },
                 {
                   name: "VFX Supervisor",
                   role: "Producers",
                   imgSrc:
-                    "https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png",
+                    "https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png",
                 },
               ].map(({ name, role, imgSrc }, index) => (
                 <div
