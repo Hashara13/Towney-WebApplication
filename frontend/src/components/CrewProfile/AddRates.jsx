@@ -31,7 +31,7 @@ const AddRates = () => {
     };
 
     axios
-      .post("http://localhost:3001/create/rates", newRate)
+      .post("http://localhost:5000/create/rates", newRate)
       .then((result) => {
         console.log(result);
         alert("Rates added done !");
