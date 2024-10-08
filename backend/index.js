@@ -3,6 +3,7 @@ const cors=require('cors')
 const mongoose=require('mongoose')
 require('dotenv').config();
 const Production_userModel=require('./models/production_user')
+const Rates=require('./models/rates')
 
 
 const app=express()
@@ -35,7 +36,14 @@ app.post('/create/new', (req, res) => {
         res.status(500).send(err); 
       });
   });
-
+  app.post('/create/rates', (req, res) => {
+    Rates.create(req.body)
+      .then((user) => res.status(201).send(user)) 
+      .catch((err) => {
+        console.error('Error adding rates :', err);
+        res.status(500).send(err); 
+      });
+  });
   // app.get('/network', (req, res) => {
   //   Production_userModel.find({})
   //     .then((user) => res.status(201).send(user)) 
