@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import CreateProfile from "../specific/CreateProfile";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 
 const AddRates = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [dailyR, setDailyR] = useState("");
   const [hourlyR, setHourlyR] = useState("");
@@ -133,11 +133,13 @@ const AddRates = () => {
                 id="travel"
                 onChange={(e) => setTravel(e.target.value)}
                 name="travel"
+                value={travel}
                 className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                           text-gray-600 placeholder-gray-400 outline-none"
               >
-                <option>Yes</option>
-                <option>No</option>
+                 <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
               </select>
             </div>
             <div className="flex items-center mb-5">
