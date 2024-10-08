@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CreateProfile from "../specific/CreateProfile";
 import axios from "axios";
 import {Link, useNavigate } from "react-router-dom";
+import SlideBar from "../specific/SlideBar";
 
 const NewProfile = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ return (
 
 
     <div className="flex">
-      <CreateProfile />
+      <SlideBar />
       <div className="flex-1 bg-white-200 py-3 px-10 min-h-screen">
         {" "}
         <div className="bg-white p-10 md:w-2/4 lg:w-1/2 mx-auto">
