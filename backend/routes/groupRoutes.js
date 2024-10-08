@@ -16,7 +16,10 @@ router.get('/create/group', async (req,res)=>{
    try{
     const {groupName,cost}=req.query;
     const query={}
-    const crewGroups=await 
-   }
-  
+    const crewGroups=await CrewGroup.find(query).populate('groupName').exec();
+    res.status(201).json(crewGroups)
+   }catch(err){
+    console.error('Error in Fetching Group Data',err)
+    res.status(500).json({error:'An error occured while fetching data'})
+   } 
 })
