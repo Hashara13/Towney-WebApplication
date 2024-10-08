@@ -5,4 +5,9 @@ const CrewGroup=require('../models/crewGroup')
 
 router.post('/create/group/new', (req,res)=>{
     CrewGroup.create(req.body)
+    .then((user)=>res.status(201).send(user))
+    .catch((err)=>{
+        console.log('Error to assigning Groups !',err)
+        res.status(500).send(err)
+    })
 })
