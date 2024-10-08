@@ -116,7 +116,7 @@ const CrewCategories = () => {
                  className="inline-block flex-shrink-0 max-w-full px-2 py-2 w-2/3 sm:w-1/8 md:w-1/20 lg:w-1/4 xl:px-4"
                 >
                   <div
-                    className="relative overflow-hidden pt-5 bg-gray-300 dark:bg-gray-300 mb-12 hover-grayscale-0 wow fadeInUp"
+                    className="relative overflow-hidden shadow-xl border-4 border-purple-700 rounded-xl  pt-5 bg-gray-300 dark:bg-purple-700 mb-12 hover-grayscale-0 wow fadeInUp"
                     data-wow-duration="1s"
                     data-wow-delay={`${0.1 * index}s`}
                     style={{
@@ -134,11 +134,11 @@ const CrewCategories = () => {
                       />
                     </div>
                     <div className="pt-6 text-center">
-                      <p className="text-lg leading-normal font-bold mb-1">
+                      {/* <p className="text-lg leading-normal font-bold mb-1">
                         {name}
-                      </p>
-                      <p className="text-gray-500 leading-relaxed font-light">
-                        {role}
+                      </p> */}
+                      <p className=" text-2xl leading-relaxed text-gray-100 ">
+                        {name}
                       </p>
                       <div className="mt-2 mb-5 space-x-2"></div>
                     </div>
