@@ -21,12 +21,12 @@ const GuideOn = () => {
           As the creative visionary, you’ll orchestrate the entire production process, from guiding actors to framing each shot, ensuring the story unfolds beautifully on screen while maintaining the film’s artistic integrity.
         </p>
         <div className="mt-8">
-          <a
-            href="#"
-            className="inline-block px-8 py-4 text-lg font-semibold text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400"
+          <Link
+            to="/create/new"
+            className="inline-block px-8 py-3 text-lg font-semibold text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400"
           >
-            Download from App Store
-          </a>
+            Get Started 
+          </Link>
         </div>
       </div>
     </div>

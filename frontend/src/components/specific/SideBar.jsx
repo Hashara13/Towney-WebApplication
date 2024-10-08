@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   return (
     <div>
-    <aside className="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-purple shadow-md rtl:border-r-0 rtl:border-l dark:bg-purple-700 dark:border-gray-700">
+    <aside className="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-purple-900 shadow-md rtl:border-r-0 rtl:border-l dark:bg-purple-800 dark:border-gray-700">
     <div className="flex flex-col justify-between flex-1 mt-6">
       <nav className="-mx-3 space-y-6">
         <div className="space-y-3">
