@@ -20,6 +20,6 @@ router.get('/create/group', async (req,res)=>{
     res.status(201).json(crewGroups)
    }catch(err){
     console.error('Error in Fetching Group Data',err)
-    res.status(500).json({error:'An error occured while fetching data'})
+    res.status(500).json({error:'An error occurred while fetching data'})
    } 
 })
