@@ -23,10 +23,10 @@ mongoose.connect(process.env.MONGODB_URI, {
   .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 
-
-app.listen(5000,()=>{
-    console.log("Server is started !")
-})
+  const PORT = 5000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
 
 app.post('/create/new', (req, res) => {
     Production_userModel.create(req.body)

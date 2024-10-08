@@ -16,10 +16,10 @@ const AddRates = () => {
   const handleNext = (e) => {
     e.preventDefault();
 
-    if (!dailyR || !hourlyR || !overR || !accom || !travel || !comm) {
-      alert("Please fill in all fields");
-      return;
-    }
+    // if (!dailyR || !hourlyR || !overR || !accom || !travel || !comm) {
+    //   alert("Please fill in all fields");
+    //   return;
+    // }
 
     const newRate = {
       dailyR,
@@ -34,15 +34,16 @@ const AddRates = () => {
       .post("http://localhost:3001/create/rates", newRate)
       .then((result) => {
         console.log(result);
-        navigate("/summary");
+        alert("Rates added done !");
+        // navigate("/summary");
       })
       .catch((err) => {
         console.error("There was an error!", err);
+        alert("Rates added unsuccesfull !");
       });
   };
 
   return (
- 
     <div className="flex">
       <CreateProfile />
       <div className="flex-1 bg-white-200 py-3 px-10 min-h-screen">
@@ -58,7 +59,7 @@ const AddRates = () => {
               </label>
               <input
                 type="text"
-                onChange={(e)=>setDailyR(e.target.value)}
+                onChange={(e) => setDailyR(e.target.value)}
                 id="dailyR"
                 name="dailyR"
                 placeholder="Enter Daily Rate"
@@ -76,8 +77,7 @@ const AddRates = () => {
               </label>
               <input
                 type="text"
-                onChange={(e)=>setHourlyR(e.target.value)}
-
+                onChange={(e) => setHourlyR(e.target.value)}
                 id="hourlyR"
                 name="hourlyR"
                 placeholder="Enter Hourly Rate"
@@ -95,8 +95,7 @@ const AddRates = () => {
               </label>
               <input
                 type="text"
-                onChange={(e)=>setOverR(e.target.value)}
-
+                onChange={(e) => setOverR(e.target.value)}
                 id="overR"
                 name="overR"
                 placeholder="Enter Overtime Rate"
@@ -110,11 +109,11 @@ const AddRates = () => {
                 htmlFor="month"
                 className="inline-block w-20 mr-6 text-right font-bold text-gray-600"
               >
-Accommodation Expenses              </label>
+                Accommodation Expenses{" "}
+              </label>
               <input
                 type="text"
-                onChange={(e)=>setAccom(e.target.value)}
-
+                onChange={(e) => setAccom(e.target.value)}
                 id="accom"
                 name="accom"
                 placeholder="Your Accommodation Expenses "
@@ -123,20 +122,16 @@ Accommodation Expenses              </label>
               />
             </div>
 
-           
-          
-
             <div className="flex items-center mb-5">
               <label
                 htmlFor="select"
                 className="inline-block w-20 mr-6 text-right font-bold text-gray-600"
               >
-                Willingness to Travel 
+                Willingness to Travel
               </label>
               <select
                 id="travel"
-                onChange={(e)=>setTravel(e.target.value)}
-
+                onChange={(e) => setTravel(e.target.value)}
                 name="travel"
                 className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                           text-gray-600 placeholder-gray-400 outline-none"
@@ -150,11 +145,11 @@ Accommodation Expenses              </label>
                 htmlFor="month"
                 className="inline-block w-90 mr-6 text-right font-bold text-gray-600"
               >
-Additional Comments or Conditions              </label>
+                Additional Comments or Conditions{" "}
+              </label>
               <input
                 type="text"
-                onChange={(e)=>setCommm(e.target.value)}
-
+                onChange={(e) => setCommm(e.target.value)}
                 id="comm"
                 name="comm"
                 placeholder="Comments or Conditions "
@@ -181,12 +176,14 @@ Additional Comments or Conditions              </label>
                 </svg>{" "}
                 Discard
               </button>
-              <Link to='/network'>
-              <button class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
-              onClick={handleNext}
-              >
-                Create
-              </button></Link>
+              <Link to="/network">
+                <button
+                  class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                  onClick={handleNext}
+                >
+                  Create
+                </button>
+              </Link>
             </div>
           </form>
         </div>
