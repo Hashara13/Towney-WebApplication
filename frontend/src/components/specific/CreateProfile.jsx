@@ -1,11 +1,13 @@
 import React from "react";
-import SlideBar from "./SlideBar.jsx";
+import SideBar from "./SideBar.jsx";
+import GuideOn from "./GuideOn.jsx";
 
 function CreateProfile() {
   return (
     <div className="flex flex-col-2">
-      <SlideBar/>
-     
+      <SideBar/>
+      <GuideOn/>
+
 
    
     </div>
