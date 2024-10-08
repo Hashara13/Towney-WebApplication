@@ -48,3 +48,14 @@ router.get('/create/group/:id', async (req,res)=>{
      res.status(500).json({error:'An error occurred while fetching data'})
     } 
  })
+
+ router.put('/create/group/delete/:id', async (req,res)=>{
+    try{
+     const groupId=req.params.id;
+     const UpdateCrew_Group=await CrewGroup.findByIdAndDelete(groupId,req.body,{new:true})
+     res.status(201).json(UpdateCrew_Group)
+    }catch(err){
+     console.error('Error in Fetching Group Data',err)
+     res.status(500).json({error:'An error occurred while fetching data'})
+    } 
+ })
