@@ -13,10 +13,10 @@ router.post('/create/group/new', (req,res)=>{
 })
 
 router.get('/create/group', async (req,res)=>{
-    CrewGroup.create(req.body)
-    .then((user)=>res.status(201).send(user))
-    .catch((err)=>{
-        console.log('Error to assigning Groups !',err)
-        res.status(500).send(err)
-    })
+   try{
+    const {groupName,cost}=req.query;
+    const query={}
+    const crewGroups=await 
+   }
+  
 })
