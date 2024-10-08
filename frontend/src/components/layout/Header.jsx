@@ -69,11 +69,11 @@ export default function Header() {
         </li>
         <li>
           <Link
-            to="/portfolio"
+            to="/create"
             className={`text-gray-700 hover:text-purple-500 ${activeItem === "portfolio" ? "text-purple-500" : ""}`}
             onClick={() => handleItemClick("portfolio")}
           >
-            Portfolio
+            Join Us
           </Link>
         </li>
       </ul>
