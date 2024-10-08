@@ -59,3 +59,4 @@ router.get('/create/group/:id', async (req,res)=>{
      res.status(500).json({error:'An error occurred while fetching data'})
     } 
  })
+ module.exports = router;
