@@ -61,3 +61,14 @@ Ensure you have the following installed on your system:
 6. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
+## Running with Docker
+
+To run the Towney Web Application using Docker, follow these steps:
+
+1. Ensure you have Docker and Docker Compose installed on your system.
+
+2. Build and start the Docker containers:
+    ```bash
+    docker-compose up --build
+
+
