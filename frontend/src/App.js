@@ -29,8 +29,7 @@ function App() {
           <Route path="/create" element={<CreateProfile />} />
           <Route path="/create/new" element={<NewProfile />} />
           <Route path="/create/rates" element={<AddRates />} />
-          <Route path="/profile:id" element={<CrewProfile />} />
-
+          <Route path="/profile/:id" element={<CrewProfile />} />
 
 
         </Routes>

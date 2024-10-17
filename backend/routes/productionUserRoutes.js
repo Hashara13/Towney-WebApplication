@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require("mongoose");
 const router = express.Router();
 const Production_userModel = require('../models/production_user');
 
@@ -31,7 +32,14 @@ router.get('/network', async (req, res) => {
 router.get('/network/get/:id', async (req, res) => {
   try {
     const crewId = req.params.id;
-    const crew = await Production_userModel.findById(crewId);
+    if (!mongoose.Types.ObjectId.isValid(crewId)) {
+      return res.status(400).send({ status: 'Invalid Production User ID' });
+    }
+    const crew = await Production_userModel.findById(crewId).populate('rates');
+    if (!crew) {
+      return res.status(404).send({ status: 'Production user not found' });
+    }
+
     res.status(201).send({ status: 'fetch success', crew });
   } catch (err) {
     console.log(err);

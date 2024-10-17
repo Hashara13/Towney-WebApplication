@@ -1,30 +1,43 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProFicImage from "../assets/images/logos/pro.jpg";
+import { useParams } from "react-router-dom";
 
-const CrewProfile = ({ id }) => {
+const CrewProfile = () => {
+  const { id } = useParams(); 
   const [crewProfile, setCrewProfile] = useState(null);
-  const [crewRates, setCrewRates] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const profileResponse = await axios.get(`http://localhost:5000/network/get/${id}`);
-        const ratesResponse = await axios.get(`http://localhost:5000/network/rates/${id}`);
+        const response = await axios.get(`http://localhost:5000/network/get/${id}`);
+        console.log(response.data); 
         
-        setCrewProfile(profileResponse.data);
-        setCrewRates(ratesResponse.data.rate);
+        if (response.data && response.data.crew) {
+          setCrewProfile(response.data.crew);
+        }
+        
+        setLoading(false);
       } catch (error) {
         console.error(`Error fetching data for ID ${id}:`, error);
+        setLoading(false); 
       }
     };
-    
+
     fetchData();
   }, [id]);
 
-  if (!crewProfile || !crewRates) {
+  if (loading) {
     return <div>Loading...</div>;
   }
+
+  if (!crewProfile) {
+    return <div>No details available</div>;
+  }
+  
+
+  const { dailyR, overR, hourlyR, accom, travel, comm } = crewProfile; 
 
   return (
     <div className="bg-gray-200 mt-[-50px]">
@@ -53,7 +66,7 @@ const CrewProfile = ({ id }) => {
                 </li>
                 <li className="flex items-center py-3">
                   <span>Phone</span>
-                  <span className="ml-auto">+94 70255155</span>
+                  <span className="ml-auto">{crewProfile.phone}</span>
                 </li>
                 <li className="flex items-center py-3">
                   <span>Email</span>
@@ -95,7 +108,7 @@ const CrewProfile = ({ id }) => {
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Birthday</div>
-                    <div className="px-4 py-2">{crewProfile.birthday}</div>
+                    <div className="px-4 py-2">{crewProfile.birthDate}</div>
                   </div>
                 </div>
               </div>
@@ -113,36 +126,30 @@ const CrewProfile = ({ id }) => {
                 </span>
                 <span className="tracking-wide">Pricing</span>
               </div>
-
               <ul className="list-inside space-y-2">
                 <li>
-                  <div className="text-teal-600">Basic</div>
-                  <div className="text-gray-500 text-xs">${crewRates.basic}</div>
+                  <div className="text-teal-600">Daily Rate</div>
+                  <div className="text-gray-500 text-xs">${dailyR}</div>
                 </li>
                 <li>
-                  <div className="text-teal-600">Premium</div>
-                  <div className="text-gray-500 text-xs">${crewRates.premium}</div>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white p-3 shadow-sm rounded-sm mt-4">
-              <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-                <span className="text-green-500">
-                  <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </span>
-                <span className="tracking-wide">Experience</span>
-              </div>
-              <ul className="list-inside space-y-2">
-                <li>
-                  <div className="text-teal-600">Cinematographer at XYZ Films</div>
-                  <div className="text-gray-500 text-xs">Jan 2015 - Present</div>
+                  <div className="text-teal-600">Overtime Rate</div>
+                  <div className="text-gray-500 text-xs">${overR}</div>
                 </li>
                 <li>
-                  <div className="text-teal-600">Assistant Cinematographer at ABC Productions</div>
-                  <div className="text-gray-500 text-xs">June 2012 - Dec 2014</div>
+                  <div className="text-teal-600">Hourly Rate</div>
+                  <div className="text-gray-500 text-xs">${hourlyR}</div>
+                </li>
+                <li>
+                  <div className="text-teal-600">Accommodation</div>
+                  <div className="text-gray-500 text-xs">{accom}</div>
+                </li>
+                <li>
+                  <div className="text-teal-600">Travel</div>
+                  <div className="text-gray-500 text-xs">{travel}</div>
+                </li>
+                <li>
+                  <div className="text-teal-600">Commute</div>
+                  <div className="text-gray-500 text-xs">{comm}</div>
                 </li>
               </ul>
             </div>

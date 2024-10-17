@@ -7,9 +7,9 @@ const RatesSchema = new mongoose.Schema({
   accom: { type: String, required: true },
   travel: { type: String, required: true },
   comm: { type: String, required: true },
-  productionUser: { type: mongoose.Schema.Types.ObjectId, ref: 'Production_user' }
+  productionUser: { type: mongoose.Schema.Types.ObjectId, ref: 'production_user' }
 });
 
-const Rates = mongoose.model("rates", RatesSchema);
+const Rates = mongoose.model("Rates", RatesSchema); 
 
 module.exports = Rates;
