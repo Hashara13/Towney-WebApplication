@@ -11,6 +11,7 @@ import CreateProfile from './components/specific/CreateProfile';
 import NewProfile from './components/CrewProfile/NewProfile';
 import AddRates from './components/CrewProfile/AddRates';
 import CrewProfile from './pages/CrewProfile';
+import NewGroup from './components/CrewProfile/NewGroup';
 import './App.css';
 
 function App() {
