@@ -4,18 +4,31 @@ import ProFicImage from "../assets/images/logos/pro.jpg";
 import { Link, useNavigate } from "react-router-dom";
 
 
-const CrewProfile = (id) => {
+const CrewProfile = ({id}) => {
   const [crewProfile, setCrewProfile] = useState(null);
- useEffect(()=>{
-  const getCrew=()=>{
-axios.get('http://localhost:5000/network/${id}')
-.then((response)=>{
-  setCrewProfile(response.data)
-}).catch(error=>{
-  console.error(`There was an error fetching the member with ID ${id}!`, error);
-})
+//  useEffect(()=>{
+//   try{
+//     const response = await axios.get(`http://localhost:5000/network/rates/${id}`);
+//   setCrewProfile(response.data.rate)
+// .then((response)=>{
+  
+// })catch(error=>{
+//   console.error(`There was an error fetching the member with ID ${id}!`, error);
+// })
+//   }
+//  } )
+
+useEffect(()=>{
+  const getCrew=async()=>{
+try{
+  const response=axios.get(`http://localhost:5000/network/rates/${id}`);
+  setCrewProfile((await response).data.rate)
+}catch(error){
+  console.error(`There was an error fetching the crew profile with ID ${id}!`, error);
+}
   }
- } )
+  getCrew();
+},[id])
 
   return (
 <div className="bg-gray-200 mt-[-50px]">
