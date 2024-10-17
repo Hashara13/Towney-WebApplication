@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require("mongoose");
 const router = express.Router();
 const Production_userModel = require('../models/production_user');
+const Rates = require('../models/rates'); //c
+
 
 router.post('/create/new', (req, res) => {
   Production_userModel.create(req.body)
@@ -29,16 +31,31 @@ router.get('/network', async (req, res) => {
   }
 });
 
+// router.get('/network/get/:id', async (req, res) => {
+//   try {
+//     const crewId = req.params.id;
+//     if (!mongoose.Types.ObjectId.isValid(crewId)) {
+//       return res.status(400).send({ status: 'Invalid Production User ID' });
+//     }
+//     const crew = await Production_userModel.findById(crewId).populate('rates');
+//     if (!crew) {
+//       return res.status(404).send({ status: 'Production user not found' });
+//     }
+
+//     res.status(201).send({ status: 'fetch success', crew });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).send({ error: 'Failed to fetch crew member' });
+//   }
+// });
+
 router.get('/network/get/:id', async (req, res) => {
   try {
-    const crewId = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(crewId)) {
-      return res.status(400).send({ status: 'Invalid Production User ID' });
-    }
-    const crew = await Production_userModel.findById(crewId).populate('rates');
-    if (!crew) {
-      return res.status(404).send({ status: 'Production user not found' });
-    }
+   
+    const crew = await Production_userModel.findById(req.params.id)
+    const rate = await Rates.find({production_user:req.params.id});
+
+   res.json({crew,rate});
 
     res.status(201).send({ status: 'fetch success', crew });
   } catch (err) {

@@ -5,21 +5,25 @@ import { useParams } from "react-router-dom";
 
 const CrewProfile = () => {
   const { id } = useParams(); 
+  // const { productionUser } = useParams(); 
   const [crewProfile, setCrewProfile] = useState(null);
+  const [crewRate, setCrewRate] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/network/get/${id}`);
-        const ratesResponse = await axios.get(`http://localhost:5000/network/rates/${id}`);
         console.log(response.data); 
-        console.log(ratesResponse.data); 
         
-        if (response.data && response.data.crew) {
-          setCrewProfile(response.data.crew);
-        }
+          setCrewProfile(response.data.crewProfile);
+          setCrewRate(response.data.crewRate);
+
+
         
+        
+      
+       
         setLoading(false);
       } catch (error) {
         console.error(`Error fetching data for ID ${id}:`, error);
@@ -38,7 +42,7 @@ const CrewProfile = () => {
     return <div>No details available</div>;
   }
   
-  const { dailyR, overR, hourlyR, accom, travel, comm } = crewProfile; 
+  // const { dailyR, overR, hourlyR, accom, travel, comm } = crewProfile; 
 
   return (
     <div className="bg-gray-200 mt-[-50px]">
@@ -93,7 +97,7 @@ const CrewProfile = () => {
                 <div className="grid md:grid-cols-2 text-sm ">
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">First Name</div>
-                    <div className="px-4 py-2">{crewProfile.firstName}</div>
+                    {/* <div className="px-4 py-2">{crewRate.crewRate}</div> */}
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Last Name</div>
@@ -119,6 +123,12 @@ const CrewProfile = () => {
             </div>
 
             <div className="bg-white p-3 shadow-sm rounded-sm mt-4">
+              {(crewRate.map((rate,_id,dailyR)=>{
+                 <li key={rate._id}>
+                 <div className="text-teal-600"></div>
+                 <div className="text-gray-500 text-xs">${rate.dailyR}</div>
+               </li>
+              }))}
               <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
                 <span className="text-green-500">
                   <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
