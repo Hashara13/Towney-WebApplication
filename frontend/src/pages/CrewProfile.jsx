@@ -12,9 +12,9 @@ const CrewProfile = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/network/get/${id}`);
-        const Ratesresponse = await axios.get(`http://localhost:5000/network/rates/${id}`);
+        const ratesResponse = await axios.get(`http://localhost:5000/network/rates/${id}`);
         console.log(response.data); 
-        console.log(Ratesresponse.data); 
+        console.log(ratesResponse.data); 
         
         if (response.data && response.data.crew) {
           setCrewProfile(response.data.crew);
