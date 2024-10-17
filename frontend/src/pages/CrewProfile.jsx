@@ -9,7 +9,7 @@ const CrewProfile = ({ id }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const profileResponse = await axios.get(`http://localhost:5000/network/crew/${id}`);
+        const profileResponse = await axios.get(`http://localhost:5000/network/get/${id}`);
         const ratesResponse = await axios.get(`http://localhost:5000/network/rates/${id}`);
         
         setCrewProfile(profileResponse.data);
