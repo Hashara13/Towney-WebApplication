@@ -4,33 +4,34 @@ import ProFicImage from "../assets/images/logos/pro.jpg";
 import { useParams } from "react-router-dom";
 
 const CrewProfile = () => {
-  const { id } = useParams(); 
-  // const { productionUser } = useParams(); 
+  const { id } = useParams();
   const [crewProfile, setCrewProfile] = useState(null);
-  const [crewRate, setCrewRate] = useState(null);
+  const [crewRates, setCrewRates] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log('Fetching data for crew ID:', id);
       try {
         const response = await axios.get(`http://localhost:5000/network/get/${id}`);
-        console.log(response.data); 
+        console.log('API Response:', response.data);
         
+        if (response.data && response.data.crewProfile) {
+          console.log('Setting crew profile:', response.data.crewProfile);
           setCrewProfile(response.data.crewProfile);
-          setCrewRate(response.data.crewRate);
-
-
-        
-        
-      
-       
-        setLoading(false);
+          setCrewRates(response.data.crewRates || []);
+        } else {
+          console.error('Invalid response format:', response.data);
+          setCrewProfile(null);
+        }
       } catch (error) {
         console.error(`Error fetching data for ID ${id}:`, error);
-        setLoading(false); 
+        setCrewProfile(null);
+      } finally {
+        setLoading(false);
       }
     };
-
+  
     fetchData();
   }, [id]);
 
@@ -41,8 +42,6 @@ const CrewProfile = () => {
   if (!crewProfile) {
     return <div>No details available</div>;
   }
-  
-  // const { dailyR, overR, hourlyR, accom, travel, comm } = crewProfile; 
 
   return (
     <div className="bg-gray-200 mt-[-50px]">
@@ -94,26 +93,26 @@ const CrewProfile = () => {
                 <span className="tracking-wide">About</span>
               </div>
               <div className="text-gray-700">
-                <div className="grid md:grid-cols-2 text-sm ">
+                <div className="grid md:grid-cols-2 text-sm">
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">First Name</div>
-                    {/* <div className="px-4 py-2">{crewRate.crewRate}</div> */}
+                    <div className="px-4 py-2">{crewProfile.name}</div>
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Last Name</div>
-                    <div className="px-4 py-2">{crewProfile.lastName}</div>
+                    <div className="px-4 py-2">{crewProfile.lastName || 'N/A'}</div>
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Gender</div>
-                    <div className="px-4 py-2">{crewProfile.gender}</div>
+                    <div className="px-4 py-2">{crewProfile.gender || 'N/A'}</div>
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Current Address</div>
-                    <div className="px-4 py-2">{crewProfile.address}</div>
+                    <div className="px-4 py-2">{crewProfile.state || 'N/A'}</div>
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Birthday</div>
-                    <div className="px-4 py-2">{crewProfile.birthday}</div>
+                    <div className="px-4 py-2">{new Date(crewProfile.birthDate).toLocaleDateString()}</div>
                   </div>
                 </div>
               </div>
@@ -123,30 +122,32 @@ const CrewProfile = () => {
             </div>
 
             <div className="bg-white p-3 shadow-sm rounded-sm mt-4">
-              {(crewRate.map((rate,_id,dailyR)=>{
-                 <li key={rate._id}>
-                 <div className="text-teal-600"></div>
-                 <div className="text-gray-500 text-xs">${rate.dailyR}</div>
-               </li>
-              }))}
               <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
                 <span className="text-green-500">
                   <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 1v22m5-16H9a3 3 0 000 6h6a3 3 0 010 6H9" />
                   </svg>
                 </span>
-                <span className="tracking-wide">Pricing</span>
+                <span className="tracking-wide">Rates</span>
               </div>
 
               <ul className="list-inside space-y-2">
-                <li>
-                  <div className="text-teal-600">Basic</div>
-                  <div className="text-gray-500 text-xs">${crewProfile.basicRate}</div>
-                </li>
-                <li>
-                  <div className="text-teal-600">Premium</div>
-                  <div className="text-gray-500 text-xs">${crewProfile.premiumRate}</div>
-                </li>
+                {crewRates.map((rate, index) => (
+                  <li key={index}>
+                    <div className="text-teal-600">Daily Rate</div>
+                    <div className="text-gray-500 text-xs">${rate.dailyR}</div>
+                    <div className="text-teal-600">Overtime Rate</div>
+                    <div className="text-gray-500 text-xs">${rate.overR}</div>
+                    <div className="text-teal-600">Hourly Rate</div>
+                    <div className="text-gray-500 text-xs">${rate.hourlyR}</div>
+                    <div className="text-teal-600">Accommodation</div>
+                    <div className="text-gray-500 text-xs">{rate.accom}</div>
+                    <div className="text-teal-600">Travel</div>
+                    <div className="text-gray-500 text-xs">{rate.travel}</div>
+                    <div className="text-teal-600">Comments</div>
+                    <div className="text-gray-500 text-xs">{rate.comm}</div>
+                  </li>
+                ))}
               </ul>
             </div>
 

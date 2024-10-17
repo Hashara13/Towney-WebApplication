@@ -51,16 +51,19 @@ router.get('/network', async (req, res) => {
 
 router.get('/network/get/:id', async (req, res) => {
   try {
-   
-    const crew = await Production_userModel.findById(req.params.id)
-    const rate = await Rates.find({production_user:req.params.id});
+    const crewId = req.params.id;
+    const crewProfile = await Production_userModel.findById(crewId);
+    
+    if (!crewProfile) {
+      return res.status(404).json({ error: 'Crew member not found' });
+    }
 
-   res.json({crew,rate});
+    const crewRates = await Rates.find({ productionUser: crewId });
 
-    res.status(201).send({ status: 'fetch success', crew });
+    return res.status(200).json({ crewProfile, crewRates });
   } catch (err) {
-    console.log(err);
-    res.status(500).send({ error: 'Failed to fetch crew member' });
+    console.error('Error fetching crew member details:', err);
+    return res.status(500).json({ error: 'Failed to fetch crew member details' });
   }
 });
 
