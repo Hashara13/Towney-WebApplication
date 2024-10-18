@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.post("/create/upload", upload.single("photo"), async (req, res) => {
+router.post("/create/upload", upload.single("photo"), async (req, res) => {
   if (!file) {
     return res.status(400).send("No file found");
   }
@@ -33,7 +33,7 @@ app.post("/create/upload", upload.single("photo"), async (req, res) => {
   }
 });
 
-app.get("/network/user", async (req, res) => {
+router.get("/network/user", async (req, res) => {
   try {
     const photos = await Profile.find();
     res.status(200).json(photos);
@@ -42,7 +42,7 @@ app.get("/network/user", async (req, res) => {
   }
 });
 
-app.get("/network/user/:id", async (req, res) => {
+router.get("/network/user/:id", async (req, res) => {
   try {
     const photoId = req.params.id;
     console / log("Requested photo found", photoId);
@@ -55,3 +55,5 @@ app.get("/network/user/:id", async (req, res) => {
     res.send(400).json({ message: error.message });
   }
 });
+
+module.exports=router;
