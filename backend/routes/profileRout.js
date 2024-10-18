@@ -21,7 +21,7 @@ app.post("/create/upload", upload.single("photo"), async (req, res) => {
   if (!file) {
     return res.status(400).send("No file found");
   }
-  const newPhoto = new Photo({
+  const newPhoto = new Profile({
     filename: req.file.filename,
     path: req.file.path,
   });
@@ -33,4 +33,20 @@ app.post("/create/upload", upload.single("photo"), async (req, res) => {
   }
 });
 
+app.get('/network/user', async(req,res)=>{
+    try{
+        const photos=await Profile.find()
+        res.status(200).json(photos)
+    }catch(error){
+        res.send(400).json({ message: error.message }); 
+    }
+})
 
+app.get('/network/user', async(req,res)=>{
+    try{
+        const photos=await Profile.find()
+        res.status(200).json(photos)
+    }catch(error){
+        res.send(400).json({ message: error.message }); 
+    }
+})
