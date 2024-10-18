@@ -24,10 +24,12 @@ mongoose
 const productionUserRoutes = require("./routes/productionUserRoutes");
 const ratesRoutes = require("./routes/ratesRouter");
 const groupRoutes = require("./routes/groupRoutes");
+const profileRoutes=require("./routes/profileRoute")
 
 app.use("/", productionUserRoutes);
 app.use("/", ratesRoutes);
 app.use("/", groupRoutes);
+app.use("/", profileRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {
