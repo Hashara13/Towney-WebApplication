@@ -33,20 +33,25 @@ app.post("/create/upload", upload.single("photo"), async (req, res) => {
   }
 });
 
-app.get('/network/user', async(req,res)=>{
-    try{
-        const photos=await Profile.find()
-        res.status(200).json(photos)
-    }catch(error){
-        res.send(400).json({ message: error.message }); 
-    }
-})
+app.get("/network/user", async (req, res) => {
+  try {
+    const photos = await Profile.find();
+    res.status(200).json(photos);
+  } catch (error) {
+    res.send(400).json({ message: error.message });
+  }
+});
 
-app.get('/network/user', async(req,res)=>{
-    try{
-        const photos=await Profile.find()
-        res.status(200).json(photos)
-    }catch(error){
-        res.send(400).json({ message: error.message }); 
+app.get("/network/user/:id", async (req, res) => {
+  try {
+    const photoId = req.params.id;
+    console / log("Requested photo found", photoId);
+    const photos = await Profile.findById(photoId);
+    if (!photos) {
+      res.send(400).send("Cant Found Photo");
     }
-})
+    res.status(200).send({ status: "fetch success", photos });
+  } catch (error) {
+    res.send(400).json({ message: error.message });
+  }
+});
