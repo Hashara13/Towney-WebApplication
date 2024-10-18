@@ -129,24 +129,32 @@ const CrewProfile = () => {
                   </div>
                   <div className="grid grid-cols-2 ">
                     <div className="flex px-4 py-2 font-semibold">
-                      Last Name
+                      Age
                     </div>
                     <div className="flex px-4 py-2">
-                      {crewProfile.lastName || "N/A"}
+                      {crewProfile.age || "N/A"}
                     </div>
                   </div>
                   <div className="flex-1 grid grid-cols-2">
-                    <div className="flex px-4 py-2 font-semibold">Gender</div>
+                    <div className="flex px-4 py-2 font-semibold">Ongoing</div>
                     <div className="flex px-4 py-2">
                       {crewProfile.gender || "N/A"}
                     </div>
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="flex px-4 py-2 font-semibold">
-                      Current Address
+                      Residence
                     </div>
                     <div className="flex px-4 py-2">
                       {crewProfile.state || "N/A"}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2">
+                    <div className="flex px-4 py-2 font-semibold">
+                      Next Available
+                    </div>
+                    <div className="flex px-4 py-2">
+                      {crewProfile.time || "N/A"}
                     </div>
                   </div>
                   <div className="grid grid-cols-2">
