@@ -20,6 +20,30 @@ useEffect(()=>{
     fetchPhotos();
 },[])
 
+const handleUpload=async(e)=>{
+    e.preventDefault();
+    if(!file){
+        alert("File dosen't exist !")
+        return
+    }
+    const formData=new FormData();
+    formData.append('photo',file)
+    setLoading(true)
+    setError(null)
+    try{
+        await axios.get('http://localhost:5000/create/upload', formData,{
+            headers:{
+                'Content-Type':'multipart/form-data'
+            }
+        })
+        setFile(null)
+    }catch(error){
+        setError(null)
+    }finally{
+        setLoading(false)
+    }
+}
+
 
   return (
     <div>UserProfile</div>
