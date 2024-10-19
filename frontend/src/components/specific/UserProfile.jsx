@@ -7,7 +7,18 @@ const UserProfile = () => {
     const[loading,setLoading]=useState(null);
     const[error,setError]=useState(null);
 
-
+useEffect(()=>{
+    const fetchPhotos=async()=>{
+        try{
+            const response=axios.get('`http://localhost:5000/network/user')
+            setPhotos(response.data)
+            setLoading(false)
+        }catch(error){
+            setError('Error fetching !')
+        }
+    }
+    fetchPhotos();
+},[])
 
 
   return (
