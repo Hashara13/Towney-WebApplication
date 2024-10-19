@@ -66,8 +66,7 @@ function FindCrew() {
           <div className="flex flex-col justify-center w-full px-2 py-1">
 
             <div className="flex justify-between items-center">
-            <Link to='/profile:id'>
-
+            <Link to={`/profile/${producer._id}`}>
               <h2 className="text-sm font-medium  text-gray-900">{producer.name}</h2>
               </Link>
 
