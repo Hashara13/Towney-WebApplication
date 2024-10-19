@@ -44,7 +44,11 @@ const handleUpload=async(e)=>{
     }
 }
 
-
+const handleFileChange = (e) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
 
 
   return (
