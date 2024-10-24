@@ -21,7 +21,7 @@ router.get('/scripts', async (req, res) => {
       if (genre) query.genre = { $regex: genre, $options: 'i' };
       if (status) query.status = status;
   
-      const scripts = await ScriptPost.find(query)
+      const scripts = await ScriptModel.find(query)
         .populate('postedBy', 'name') 
         .exec();
         
@@ -36,7 +36,7 @@ router.get('/scripts', async (req, res) => {
 router.get('/scripts/get/:id', async (req, res) => {
     try {
         const scriptId = req.params.id;
-        const scriptsList = await Profile.findById(scriptId);
+        const scriptsList = await ScriptModel.findById(scriptId);
         if (!scriptsList) {
           return res.status(404).send("scriptsList not found");
         }
