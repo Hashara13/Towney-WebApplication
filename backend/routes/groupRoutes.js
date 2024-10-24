@@ -2,6 +2,8 @@ const express = require('express')
 const mongoose=require('mongoose')
 const router=express.Router()
 const CrewGroup=require('../models/crewGroup')
+const Production_userModel = require('../models/production_user');
+
 
 router.post('/create/group/new', (req,res)=>{
     CrewGroup.create(req.body)
@@ -12,22 +14,25 @@ router.post('/create/group/new', (req,res)=>{
     })
 })
 
-router.get('/view/group', async (req,res)=>{
-   try{
-    const {groupName,cost,description,members,location}=req.query;
-    const query={}
-    if (groupName) query.groupName = { $regex: name, $options: 'i' };
-    if (cost) query.state = cost;
-    if (performRole) query.performRole = performRole;
-    if (description) query.description = description;
-    if (location) query.location = location;
-    const crewGroups=await CrewGroup.find(query).populate('groupName').exec();
-    res.status(201).json(crewGroups)
-   }catch(err){
-    console.error('Error in Fetching Group Data',err)
-    res.status(500).json({error:'An error occurred while fetching data'})
-   } 
-})
+router.get('/view/group', async (req, res) => {
+   try {
+     const { groupName, cost, description, members, location } = req.query;
+     const query = {};
+ 
+     if (groupName) query.groupName = { $regex: groupName, $options: 'i' };  
+     if (cost) query.cost = cost;  
+     if (description) query.description = { $regex: description, $options: 'i' };
+     if (location) query.location = { $regex: location, $options: 'i' };
+ 
+     const crewGroups = await CrewGroup.find(query).populate('members').exec(); 
+     
+     res.status(200).json(crewGroups);  
+   } catch (err) {
+     console.error('Error in Fetching Group Data:', err);
+     res.status(500).json({ error: 'An error occurred while fetching data' });
+   }
+ });
+ 
 
 router.get('/view/group/:id', async (req,res)=>{
     try{
