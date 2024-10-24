@@ -14,7 +14,7 @@ router.post('/create/group/new', (req,res)=>{
 
 router.get('/create/group', async (req,res)=>{
    try{
-    const {groupName,cost}=req.query;
+    const {groupName,cost,description,members,location}=req.query;
     const query={}
     const crewGroups=await CrewGroup.find(query).populate('groupName').exec();
     res.status(201).json(crewGroups)
