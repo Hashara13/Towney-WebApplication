@@ -14,6 +14,7 @@ import AddRates from './components/CrewProfile/AddRates';
 import CrewProfile from './pages/CrewProfile';
 import NewGroup from './components/CrewProfile/NewGroup';
 import ViewGroups from './components/specific/ViewGroups';
+import FindGroups from './pages/FindGroups';
 
 import './App.css';
 
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/network" element={<FindCrew />} />
+          <Route path="/groups" element={<FindGroups />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/portfolio" element={<AboutUs />} />
