@@ -162,7 +162,7 @@ const NewGroup = () => {
                 <option value="">Select</option>
                 {members.map((member) => (
                   <option key={member._id} value={member._id}>
-                    {member.name}
+                    {member.name} |   {member.performRole}
                   </option>
                 ))}
               </select>
