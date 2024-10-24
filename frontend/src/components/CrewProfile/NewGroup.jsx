@@ -191,35 +191,30 @@ const NewGroup = () => {
                 Add
               </button>
             </div>
-
-            <div className="mb-5">
-              <ul>
-                {groupMembers.map((member) => (
-                  <li key={member._id} className="flex  items-center mb-2 mr-10">
-                    <span>{member.name} | {member.performRole}</span>
-                    <button type="button" className="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
-                <svg
-                  className="w-6 h-6 mr-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  onClick={() => RemoveMember(member._id)}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
-                </svg>{" "}
-                
-              </button>
-   
-                  </li>
-                ))}
-              </ul>
+      <ul className="space-y-3">
+        {groupMembers.map((member) => (
+          <li 
+            key={member._id} 
+            className="flex items-center justify-between bg-gray-50 p-4 rounded-md transition duration-150 ease-in-out hover:bg-gray-100"
+          >
+            <div className="flex flex-col">
+              <span className="text-lg font-medium text-gray-900">{member.name}</span>
+              <span className="text-sm text-gray-500">{member.performRole}</span>
             </div>
+            <button
+              type="button"
+              onClick={() => RemoveMember(member._id)}
+              className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded-full transition duration-150 ease-in-out"
+              aria-label={`Remove ${member.name}`}
+            >
+              <span className="text-lg font-medium">×</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      {groupMembers.length === 0 && (
+        <p className="text-gray-500 text-center py-4">No group members yet.</p>
+      )}
 
             <div className="pt-2 flex items-center space-x-4">
               <button type="button" className="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
