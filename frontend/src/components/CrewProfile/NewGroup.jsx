@@ -13,7 +13,7 @@ const NewGroup = () => {
   const [selectedMember, setSelectedMember] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [producers, setProducers] = useState([]);
+  const [groupMembers, setGroupMembers] = useState([]);
 
   useEffect(() => {
     const fetchMembers = async () => {
