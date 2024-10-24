@@ -52,7 +52,7 @@ export default function FindCrew() {
           <p className="mt-6 max-w-2xl mx-auto text-xl">
             Connect with top talent in the industry and bring your projects to life.
           </p>
-          <div className="mt-10 max-w-xl mx-auto">
+          <div className="mt-10 max-w-lg mx-auto">
             <div className="flex items-center bg-white rounded-lg overflow-hidden shadow-md">
               <input
                 type="text"
@@ -123,15 +123,18 @@ export default function FindCrew() {
 
       <div className="bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-4">
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
             Ready to Build Your Dream Team?
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-gray-600 mb-4">
             Join our network and connect with top professionals in the industry.
           </p>
+          <Link to="/create">
+
           <button className="bg-purple-600 text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-            Sign Up Now
+            Get Started
           </button>
+          </Link>
         </div>
       </div>
     </div>
