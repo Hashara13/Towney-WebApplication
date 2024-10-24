@@ -12,6 +12,7 @@ import NewProfile from './components/CrewProfile/NewProfile';
 import AddRates from './components/CrewProfile/AddRates';
 import CrewProfile from './pages/CrewProfile';
 import NewGroup from './components/CrewProfile/NewGroup';
+
 import './App.css';
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
           <Route path="/create/new" element={<NewProfile />} />
           <Route path="/create/rates" element={<AddRates />} />
           <Route path="/profile/:id" element={<CrewProfile />} />
+          <Route path="/create/group" element={<NewGroup />} />
+
+          
 
 
         </Routes>
