@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+// import ProfilePhoto from "../components/specific/profilePhoto";
 import ProFicImage from "../assets/images/logos/pro.jpg";
 
-export default function FindCrew() {
+export default function FindCrew(producer) {
+  // const profileImage = ProfilePhoto(producer.name);
   const [producers, setProducers] = useState([]);
   const [fileterProducers, setfileterProducers] = useState([]);
   const [searchText, setSearchTexts] = useState("");
@@ -78,11 +80,11 @@ export default function FindCrew() {
             >
               <div className="p-6">
                 <div className="flex items-center mb-4">
-                  <img
-                    src={ProFicImage}
-                    alt="Profile Pic"
-                    className="w-16 h-16 rounded-full object-cover mr-4"
-                  />
+                <img
+            src={ProFicImage}
+            alt={`${producer.name}'s profile`}
+            className="w-16 h-16 rounded-full object-cover mr-4"
+          />
                   <div>
                     <Link to={`/profile/${producer._id}`} className="text-xl font-semibold text-gray-900 hover:text-purple-600 transition-colors">
                       {producer.name}
