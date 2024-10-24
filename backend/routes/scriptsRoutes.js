@@ -4,70 +4,67 @@ const router = express.Router();
 const ScriptModel=require('../models/script')
 
 
-router.post('/create/new', (req, res) => {
-  Production_userModel.create(req.body)
+router.post('/script/new', (req, res) => {
+    ScriptModel.create(req.body)
     .then((user) => res.status(201).send(user))
     .catch((err) => {
-      console.error('Error creating user:', err);
+      console.error('Error creating script:', err);
       res.status(500).send(err);
     });
 });
 
-router.get('/network', async (req, res) => {
-  try {
-    const { name, state, performRole } = req.query;
-    const query = {};
-
-    if (name) query.name = { $regex: name, $options: 'i' };
-    if (state) query.state = state;
-    if (performRole) query.performRole = performRole;
-
-    const crewMembers = await Production_userModel.find(query).populate('name').exec();
-    res.status(200).json(crewMembers);
-  } catch (err) {
-    console.error('Error fetching crew members:', err);
-    res.status(500).json({ error: 'An error occurred while fetching crew members.' });
-  }
-});
-
-
-router.get('/network/get/:id', async (req, res) => {
-  try {
-    const crewId = req.params.id;
-    const crewProfile = await Production_userModel.findById(crewId);
-    
-    if (!crewProfile) {
-      return res.status(404).json({ error: 'Crew member not found' });
+router.get('/scripts', async (req, res) => {
+    try {
+      const { genre, status } = req.query;
+      const query = {};
+  
+      if (genre) query.genre = { $regex: genre, $options: 'i' };
+      if (status) query.status = status;
+  
+      const scripts = await ScriptPost.find(query)
+        .populate('postedBy', 'name') 
+        .exec();
+        
+      res.status(200).json(scripts);
+    } catch (err) {
+      console.error('Error fetching scripts:', err);
+      res.status(500).json({ error: 'An error occurred while fetching scripts.' });
     }
+  });
 
-    const crewRates = await Rates.find({ productionUser: crewId });
 
-    return res.status(200).json({ crewProfile, crewRates });
-  } catch (err) {
-    console.error('Error fetching crew member details:', err);
-    return res.status(500).json({ error: 'Failed to fetch crew member details' });
-  }
-});
+router.get('/scripts/get/:id', async (req, res) => {
+    try {
+        const scriptId = req.params.id;
+        const scriptsList = await Profile.findById(scriptId);
+        if (!scriptsList) {
+          return res.status(404).send("scriptsList not found");
+        }
+        res.status(200).json({ status: "fetch success", scriptsList });
+      } catch (error) {
+        res.status(400).json({ message: error.message });
+      }
+    });
 
-router.put('/network/update/:id', async (req, res) => {
+router.put('/scripts/update/:id', async (req, res) => {
   try {
-    const crewId = req.params.id;
-    const updatedCrew = await Production_userModel.findByIdAndUpdate(crewId, req.body, { new: true });
-    res.status(200).send({ status: 'update success', updatedCrew });
+    const scriptId = req.params.id;
+    const updatedScript = await ScriptModel.findByIdAndUpdate(scriptId, req.body, { new: true });
+    res.status(200).send({ status: 'update success', updatedScript });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ error: 'Failed to update crew member' });
+    res.status(500).send({ error: 'Failed to update scripts' });
   }
 });
 
-router.delete('/network/delete/:id', async (req, res) => {
+router.delete('/scripts/delete/:id', async (req, res) => {
   try {
-    const crewId = req.params.id;
-    await Production_userModel.findByIdAndDelete(crewId);
+    const scriptId = req.params.id;
+    await ScriptModel.findByIdAndDelete(scriptId);
     res.status(200).send({ status: 'delete success' });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ error: 'Failed to delete crew member' });
+    res.status(500).send({ error: 'Failed to delete script' });
   }
 });
 
