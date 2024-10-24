@@ -166,6 +166,11 @@ const NewGroup = () => {
                   </option>
                 ))}
               </select>
+              <button
+                  class="ml-10 bg-gray-600 flex justify-center items-center text-white px-3 py-2 rounded-md "
+                >
+                  Add
+                </button>
             </div>
 
             <div class="pt-2 flex items-center space-x-4">
