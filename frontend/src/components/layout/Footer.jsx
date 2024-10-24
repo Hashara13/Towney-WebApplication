@@ -5,7 +5,7 @@ import logo from "../../assets/images/logos/lg-2.png";
 function Footer() {
   return (
     <div>
-      <footer class="bg-gray mt-4 dark:bg-gray-900">
+      <footer class="bg-gray  dark:bg-gray-900">
         <div class="container px-6 py-12 mx-auto">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
             <div class="sm:col-span-2">

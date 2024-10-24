@@ -59,13 +59,13 @@ export default function Header() {
           </a>
         </li>
         <li>
-          <a
+          <Link to="/groups"
             href="#make-group"
             className={`text-gray-700 hover:text-purple-500 ${activeItem === "make-group" ? "text-purple-500" : ""}`}
             onClick={() => handleItemClick("make-group")}
           >
-            Make Group
-          </a>
+            Talents Groups
+          </Link>
         </li>
         <li>
           <Link
