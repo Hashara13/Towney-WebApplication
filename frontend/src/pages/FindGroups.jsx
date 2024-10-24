@@ -1,52 +1,58 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
-const FindGroups = () => {
+export default function Component() {
   const [groups, setGroups] = useState([]);
-  const [fileterGroups, setfileterGroups] = useState([]);
-  const [searchText, setSearchTexts] = useState("");
+  const [filterGroups, setFilterGroups] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const viewGroups = () => {
-      axios
-        .get("http://localhost:5000/view/group")
-        .then((res) => {
-          setGroups(res.data);
-          setfileterGroups(res.data);
-        })
-        .catch((err) => {
-          console.error("Error fetching producers:", err);
-          alert("Failed to fetch producers. Check console for details.");
-        });
+    const viewGroups = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/view/group");
+        setGroups(response.data);
+        setFilterGroups(response.data);
+      } catch (err) {
+        console.error("Error fetching groups:", err);
+        setError("Failed to fetch groups. Please try again later.");
+      }
     };
     viewGroups();
   }, []);
 
   const handleSearch = (e) => {
     const searchInput = e.target.value.toLowerCase();
-    setSearchTexts(searchInput);
+    setSearchText(searchInput);
 
     if (searchInput === "") {
-      setfileterGroups(groups);
+      setFilterGroups(groups);
     } else {
-      const filterredInput = groups.filter(
-        (group) =>
-          group.groupName.toLowerCase().includes(searchInput) ||
-          group.location.toLowerCase().includes(searchInput) ||
-          group.cost.toLowerCase().includes(searchInput) ||
-          group.members.toLowerCase().includes(searchInput)
-      );
-      setfileterGroups(filterredInput);
+      const filteredInput = groups.filter((group) => {
+        const groupName = group.groupName?.toLowerCase() || '';
+        const location = group.location?.toLowerCase() || '';
+        const cost = group.cost?.toLowerCase() || '';
+        const members = Array.isArray(group.members)
+          ? group.members.join(' ').toLowerCase()
+          : (typeof group.members === 'string' ? group.members.toLowerCase() : '');
+
+        return (
+          groupName.includes(searchInput) ||
+          location.includes(searchInput) ||
+          cost.includes(searchInput) ||
+          members.includes(searchInput)
+        );
+      });
+      setFilterGroups(filteredInput);
     }
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-100">
       <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            Collaborate with Expert Teams{" "}
+            Collaborate with Expert Teams
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-2xl">
             Join with industry-leading professionals to achieve success.
@@ -68,19 +74,25 @@ const FindGroups = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <strong className="font-bold">Error: </strong>
+            <span className="block sm:inline">{error}</span>
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {fileterGroups.map((group, index) => (
+          {filterGroups.map((group, index) => (
             <div
               key={group._id || index}
               className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105"
             >
               <div className="p-6">
-                <div className="flex items-center mb-1">
+                <div className="flex items-center mb-2">
                   <div>
                     <p className="text-xl font-semibold text-gray-900 hover:text-purple-600 transition-colors">
                       {group.groupName}
                     </p>
-                
+                  
                   </div>
                 </div>
                 <div className="flex items-center mb-2">
@@ -135,6 +147,4 @@ const FindGroups = () => {
       </div>
     </div>
   );
-};
-
-export default FindGroups;
+}
