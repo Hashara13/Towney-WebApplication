@@ -61,18 +61,17 @@ const NewGroup = () => {
 
     console.log("New group:", newGroup);
 
-    // Uncomment this section when ready to submit to the backend
-    // axios
-    //   .post("http://localhost:5000/create/group", newGroup)
-    //   .then((result) => {
-    //     console.log(result);
-    //     alert("Group added successfully!");
-    //     // navigate("/summary");
-    //   })
-    //   .catch((err) => {
-    //     console.error("There was an error!", err);
-    //     alert("Group addition unsuccessful!");
-    //   });
+    axios
+      .post("http://localhost:5000/create/group/new'", newGroup)
+      .then((result) => {
+        console.log(result);
+        alert("Group added successfully!");
+        // navigate("/summary");
+      })
+      .catch((err) => {
+        console.error("There was an error!", err);
+        alert("Group addition unsuccessful!");
+      });
   };
 
   if (isLoading) {
