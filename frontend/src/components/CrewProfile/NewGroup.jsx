@@ -3,6 +3,7 @@ import CreateProfile from "../specific/CreateProfile";
 import SideBar from "../specific/SideBar";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const NewGroup = () => {
   const [groupName, setGroupname] = useState("");
@@ -14,7 +15,6 @@ const NewGroup = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [groupMembers, setGroupMembers] = useState([]);
-
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -35,26 +35,18 @@ const NewGroup = () => {
     setSelectedMember(e.target.value);
   };
 
-  if (isLoading) {
-    return <div>Loading members...</div>;
-  }
+  const AddMember = (e) => {
+    e.preventDefault(); // Prevent form submission
+    if (selectedMember && !groupMembers.some(m => m._id === selectedMember)) {
+      const addtoList = members.find(m => m._id === selectedMember);
+      setGroupMembers([...groupMembers, addtoList]);
+      setSelectedMember('');
+    }
+  };
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-
-const AddMember=async()=>{
-  if(selectedMember && !groupMembers.same(m=>m._id===groupMembers)){
-    const addtoList=members.find(m=>m._id===groupMembers)
-    setSelectedMember([...groupMembers,addtoList])
-    setGroupMembers('');
-  }
-}
-
-const RemoveMember=async (member_id)=>{
-  setGroupMembers(groupMembers.filter(m=>m._id!==member_id))
-}
+  const RemoveMember = (member_id) => {
+    setGroupMembers(groupMembers.filter(m => m._id !== member_id));
+  };
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -64,29 +56,39 @@ const RemoveMember=async (member_id)=>{
       desc,
       location,
       cost,
-      members,
+      members: groupMembers.map(member => member._id),
     };
 
+    console.log("New group:", newGroup);
+
+    // Uncomment this section when ready to submit to the backend
     // axios
-    //   .post("http://localhost:5000/create/rates", newRate)
+    //   .post("http://localhost:5000/create/group", newGroup)
     //   .then((result) => {
     //     console.log(result);
-    //     alert("group added done !");
+    //     alert("Group added successfully!");
     //     // navigate("/summary");
     //   })
     //   .catch((err) => {
     //     console.error("There was an error!", err);
-    //     alert("Group added unsuccesfull !");
+    //     alert("Group addition unsuccessful!");
     //   });
   };
+
+  if (isLoading) {
+    return <div>Loading members...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="flex">
       <SideBar />
       <div className="flex-1 bg-white-200 py-3 px-10 min-h-screen">
-        {" "}
         <div className="bg-white p-10 md:w-2/4 lg:w-1/2 mx-auto">
-          <form action="POST">
+          <form onSubmit={handleNext}>
             <div className="flex items-center mb-5">
               <label
                 htmlFor="name"
@@ -177,62 +179,72 @@ const RemoveMember=async (member_id)=>{
                 <option value="">Select</option>
                 {members.map((member) => (
                   <option key={member._id} value={member._id}>
-                    {member.name} |   {member.performRole}
+                    {member.name} | {member.performRole}
                   </option>
                 ))}
               </select>
               <button
-                  class="ml-10 bg-gray-600 flex justify-center items-center text-white px-3 py-2 rounded-md "
-                  onClick={AddMember}
-                >
-                  Add
-                </button>
+                type="button" // Change to type="button"
+                className="ml-10 bg-gray-600 flex justify-center items-center text-white px-3 py-2 rounded-md"
+                onClick={AddMember}
+              >
+                Add
+              </button>
             </div>
 
             <div className="mb-5">
-              <h3 className="font-bold text-gray-600 mb-2">Added Members:</h3>
               <ul>
                 {groupMembers.map((member) => (
-                  <li key={member._id} className="flex justify-between items-center mb-2">
+                  <li key={member._id} className="flex  items-center mb-2 mr-10">
                     <span>{member.name} | {member.performRole}</span>
-                    <button
-                      type="button"
-                      onClick={() => RemoveMember(member._id)}
-                      className="bg-red-500 text-white px-2 py-1 rounded-md text-sm"
-                    >
-                      Remove
-                    </button>
+                    <button type="button" className="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
+                <svg
+                  className="w-6 h-6 mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  onClick={() => RemoveMember(member._id)}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>{" "}
+                
+              </button>
+   
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div class="pt-2 flex items-center space-x-4">
-              <button class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
+            <div className="pt-2 flex items-center space-x-4">
+              <button type="button" className="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
                 <svg
-                  class="w-6 h-6 mr-3"
+                  className="w-6 h-6 mr-3"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M6 18L18 6M6 6l12 12"
                   ></path>
                 </svg>{" "}
                 Discard
               </button>
-              <Link to="/network">
-                <button
-                  class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
-                  onClick={handleNext}
-                >
-                  Create
-                </button>
-              </Link>
+              <button
+                type="submit"
+                className="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+              >
+                Create
+              </button>
             </div>
           </form>
         </div>
