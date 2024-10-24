@@ -12,10 +12,15 @@ router.post('/create/group/new', (req,res)=>{
     })
 })
 
-router.get('/create/group', async (req,res)=>{
+router.get('/view/group', async (req,res)=>{
    try{
     const {groupName,cost,description,members,location}=req.query;
     const query={}
+    if (groupName) query.groupName = { $regex: name, $options: 'i' };
+    if (cost) query.state = cost;
+    if (performRole) query.performRole = performRole;
+    if (description) query.description = description;
+    if (location) query.location = location;
     const crewGroups=await CrewGroup.find(query).populate('groupName').exec();
     res.status(201).json(crewGroups)
    }catch(err){
@@ -24,7 +29,7 @@ router.get('/create/group', async (req,res)=>{
    } 
 })
 
-router.get('/create/group/:id', async (req,res)=>{
+router.get('/view/group/:id', async (req,res)=>{
     try{
      const groupId=req.params.id;
      const crew_Group=await CrewGroup.findById(groupId)
@@ -49,7 +54,7 @@ router.get('/create/group/:id', async (req,res)=>{
     } 
  })
 
- router.put('/create/group/delete/:id', async (req,res)=>{
+ router.delete('/create/group/delete/:id', async (req,res)=>{
     try{
      const groupId=req.params.id;
      const UpdateCrew_Group=await CrewGroup.findByIdAndDelete(groupId,req.body,{new:true})
