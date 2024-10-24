@@ -6,41 +6,35 @@ import { Link,  } from "react-router-dom";
 
 const NewGroup = () => {
   
-    const [dailyR, setDailyR] = useState("");
-    const [hourlyR, setHourlyR] = useState("");
-    const [overR, setOverR] = useState("");
-    const [accom, setAccom] = useState("");
-    const [travel, setTravel] = useState("");
-    const [comm, setCommm] = useState("");
+    const [groupName, setGroupname] = useState("");
+    const [desc, setDesc] = useState("");
+    const [location, setLocation] = useState("");
+    const [cost, setCost] = useState("");
+    const [members, setMembers] = useState("");
   
     const handleNext = (e) => {
       e.preventDefault();
+
   
-      // if (!dailyR || !hourlyR || !overR || !accom || !travel || !comm) {
-      //   alert("Please fill in all fields");
-      //   return;
-      // }
-  
-      const newRate = {
-        dailyR,
-        overR,
-        hourlyR,
-        accom,
-        travel,
-        comm,
+      const newGroup = {
+        groupName,
+        desc,
+        location,
+        cost,
+        members
       };
   
-      axios
-        .post("http://localhost:5000/create/rates", newRate)
-        .then((result) => {
-          console.log(result);
-          alert("Rates added done !");
-          // navigate("/summary");
-        })
-        .catch((err) => {
-          console.error("There was an error!", err);
-          alert("Rates added unsuccesfull !");
-        });
+      // axios
+      //   .post("http://localhost:5000/create/rates", newRate)
+      //   .then((result) => {
+      //     console.log(result);
+      //     alert("group added done !");
+      //     // navigate("/summary");
+      //   })
+      //   .catch((err) => {
+      //     console.error("There was an error!", err);
+      //     alert("Group added unsuccesfull !");
+      //   });
     };
   
     return (
@@ -55,14 +49,14 @@ const NewGroup = () => {
                   htmlFor="name"
                   className="inline-block w-20 mr-6 text-right font-bold text-gray-600"
                 >
-                  Daily Rate
+                  Group Name
                 </label>
                 <input
                   type="text"
-                  onChange={(e) => setDailyR(e.target.value)}
-                  id="dailyR"
-                  name="dailyR"
-                  placeholder="Enter Daily Rate"
+                  onChange={(e) => setGroupname(e.target.value)}
+                  id="groupName"
+                  name="groupName"
+                  placeholder="Enter Group Name "
                   className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                             text-gray-600 placeholder-gray-400 outline-none"
                 />
@@ -73,14 +67,14 @@ const NewGroup = () => {
                   htmlFor="number"
                   className="inline-block w-20 mr-6 text-right font-bold text-gray-600"
                 >
-                  Hourly Rate
+                  Add a Description
                 </label>
                 <input
                   type="text"
-                  onChange={(e) => setHourlyR(e.target.value)}
-                  id="hourlyR"
-                  name="hourlyR"
-                  placeholder="Enter Hourly Rate"
+                  onChange={(e) => setDesc(e.target.value)}
+                  id="desc"
+                  name="desc"
+                  placeholder="Description"
                   className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                             text-gray-600 placeholder-gray-400 outline-none"
                 />
@@ -91,14 +85,14 @@ const NewGroup = () => {
                   htmlFor="date"
                   className="inline-block w-20 mr-6 text-right font-bold text-gray-600"
                 >
-                  Overtime Rate
+                  Available Location
                 </label>
                 <input
                   type="text"
-                  onChange={(e) => setOverR(e.target.value)}
-                  id="overR"
-                  name="overR"
-                  placeholder="Enter Overtime Rate"
+                  onChange={(e) => setLocation(e.target.value)}
+                  id="location"
+                  name="location"
+                  placeholder="Enter available location"
                   className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                             text-gray-600 placeholder-gray-400 outline-none"
                 />
@@ -109,14 +103,14 @@ const NewGroup = () => {
                   htmlFor="month"
                   className="inline-block w-20 mr-6 text-right font-bold text-gray-600"
                 >
-                  Accommodation Expenses{" "}
+                  Charges for Group{" "}
                 </label>
                 <input
                   type="text"
-                  onChange={(e) => setAccom(e.target.value)}
-                  id="accom"
-                  name="accom"
-                  placeholder="Your Accommodation Expenses "
+                  onChange={(e) => setCost(e.target.value)}
+                  id="cost"
+                  name="cost"
+                  placeholder="Your cost Expenses "
                   className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                             text-gray-600 placeholder-gray-400 outline-none"
                 />
@@ -127,13 +121,13 @@ const NewGroup = () => {
                   htmlFor="select"
                   className="inline-block w-20 mr-6 text-right font-bold text-gray-600"
                 >
-                  Willingness to Travel
+                 Add Members
                 </label>
                 <select
                   id="travel"
-                  onChange={(e) => setTravel(e.target.value)}
-                  name="travel"
-                  value={travel}
+                  onChange={(e) => setMembers(e.target.value)}
+                  name="members"
+                  value={members}
                   className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
                                             text-gray-600 placeholder-gray-400 outline-none"
                 >
@@ -142,23 +136,7 @@ const NewGroup = () => {
     <option value="No">No</option>
                 </select>
               </div>
-              <div className="flex items-center mb-5">
-                <label
-                  htmlFor="month"
-                  className="inline-block w-90 mr-6 text-right font-bold text-gray-600"
-                >
-                  Additional Comments or Conditions{" "}
-                </label>
-                <input
-                  type="text"
-                  onChange={(e) => setCommm(e.target.value)}
-                  id="comm"
-                  name="comm"
-                  placeholder="Comments or Conditions "
-                  className="flex-1 py-2 border-b-2 border-gray-400 focus:border-purple-400 
-                                            text-gray-600 placeholder-gray-400 outline-none"
-                />
-              </div>
+           
   
               <div class="pt-2 flex items-center space-x-4">
                 <button class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
