@@ -64,7 +64,7 @@ export default function Header() {
             className={`text-gray-700 hover:text-purple-500 ${activeItem === "make-group" ? "text-purple-500" : ""}`}
             onClick={() => handleItemClick("make-group")}
           >
-            Make Group
+            Talents Groups
           </a>
         </li>
         <li>

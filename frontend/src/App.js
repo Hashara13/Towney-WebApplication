@@ -6,12 +6,14 @@ import FindCrew from './pages/FindCrew';
 import LogIn from './components/layout/LogIn';
 import SignUp from './components/layout/SignUp';
 import AboutUs from './pages/AboutUs';
+import Footer from './components/layout/Footer';
 import LandingPage from './pages/LandingPage';
 import CreateProfile from './components/specific/CreateProfile';
 import NewProfile from './components/CrewProfile/NewProfile';
 import AddRates from './components/CrewProfile/AddRates';
 import CrewProfile from './pages/CrewProfile';
 import NewGroup from './components/CrewProfile/NewGroup';
+import ViewGroups from './components/specific/ViewGroups';
 
 import './App.css';
 
@@ -32,11 +34,14 @@ function App() {
           <Route path="/create/rates" element={<AddRates />} />
           <Route path="/profile/:id" element={<CrewProfile />} />
           <Route path="/create/group" element={<NewGroup />} />
+          <Route path="/view/groups" element={<ViewGroups />} />
+
 
           
 
 
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );
