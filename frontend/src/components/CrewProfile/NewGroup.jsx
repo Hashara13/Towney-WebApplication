@@ -15,6 +15,7 @@ const NewGroup = () => {
   const [error, setError] = useState(null);
   const [groupMembers, setGroupMembers] = useState([]);
 
+
   useEffect(() => {
     const fetchMembers = async () => {
       try {
@@ -41,6 +42,20 @@ const NewGroup = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
+
+const AddMember=async()=>{
+  if(selectedMember && !groupMembers.same(m=>m._id===groupMembers)){
+    const addtoList=members.find(m=>m._id===groupMembers)
+    setSelectedMember([...groupMembers,addtoList])
+    setGroupMembers('');
+  }
+}
+
+const RemoveMember=async (member_id)=>{
+  setGroupMembers(groupMembers.filter(m=>m._id!==member_id))
+}
+
   const handleNext = (e) => {
     e.preventDefault();
 
@@ -168,9 +183,28 @@ const NewGroup = () => {
               </select>
               <button
                   class="ml-10 bg-gray-600 flex justify-center items-center text-white px-3 py-2 rounded-md "
+                  onClick={AddMember}
                 >
                   Add
                 </button>
+            </div>
+
+            <div className="mb-5">
+              <h3 className="font-bold text-gray-600 mb-2">Added Members:</h3>
+              <ul>
+                {groupMembers.map((member) => (
+                  <li key={member._id} className="flex justify-between items-center mb-2">
+                    <span>{member.name} | {member.performRole}</span>
+                    <button
+                      type="button"
+                      onClick={() => RemoveMember(member._id)}
+                      className="bg-red-500 text-white px-2 py-1 rounded-md text-sm"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div class="pt-2 flex items-center space-x-4">
