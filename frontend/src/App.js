@@ -16,6 +16,7 @@ import CrewProfile from './pages/CrewProfile';
 import NewGroup from './components/CrewProfile/NewGroup';
 import ViewGroups from './components/specific/ViewGroups';
 import FindGroups from './pages/FindGroups';
+import ViewScripts from './components/specific/ViewScripts';
 
 import './App.css';
 
@@ -39,6 +40,8 @@ function App() {
           <Route path="/profile/:id" element={<CrewProfile />} />
           <Route path="/create/group" element={<NewGroup />} />
           <Route path="/view/groups" element={<ViewGroups />} />
+          <Route path="/jobs" element={<ViewScripts />} />
+
 
 
           
