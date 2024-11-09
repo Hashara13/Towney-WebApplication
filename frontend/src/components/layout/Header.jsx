@@ -51,9 +51,9 @@ export default function Header() {
         </li>
         <li>
         <Link
-            to="/jobs"
+            to="/scripts"
             className={`text-gray-700 hover:text-purple-500 ${activeItem === "find-work" ? "text-purple-500" : ""}`}
-            onClick={() => handleItemClick("find-crew")}
+            onClick={() => handleItemClick("find-work")}
           >
             Find Work
           </Link>

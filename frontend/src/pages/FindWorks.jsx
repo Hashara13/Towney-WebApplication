@@ -1,6 +1,13 @@
-import React from 'react'
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+// import ProfilePhoto from "../components/specific/profilePhoto";
+import ProFicImage from "../assets/images/logos/pro.jpg";
 const FindWorks = () => {
+  const [producers, setProducers] = useState([]);
+  const [fileterProducers, setfileterProducers] = useState([]);
+  const [searchText, setSearchTexts] = useState("");
+
   return (
     <div className="flex-1 bg-gray-100 min-h-screen">
     <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
@@ -16,8 +23,8 @@ const FindWorks = () => {
             <input
               type="text"
               placeholder="Search crew members"
-              value={searchText}
-              onChange={handleSearch}
+              // value={searchText}
+              // onChange={handleSearch}
               className="flex-grow px-6 py-4 text-gray-700 focus:outline-none"
             />
             <button className="bg-purple-500 text-white px-6 py-4 hover:bg-purple-600 transition-colors">
