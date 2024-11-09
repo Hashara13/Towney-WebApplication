@@ -1,8 +1,11 @@
 import React from 'react'
+import SideBar from '../specific/SideBar'
 
 const NewScript = () => {
   return (
-    <div>NewScript</div>
+    <div>
+      <SideBar/>
+      NewScript</div>
   )
 }
 
