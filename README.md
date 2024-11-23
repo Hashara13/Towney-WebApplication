@@ -1,4 +1,4 @@
-# Towney Web Application
+# Towney
 <p align="center">
 
   <img src="./frontend//src//assets//images//logos/lg-2.png" alt="Towney Logo" width="300" />
