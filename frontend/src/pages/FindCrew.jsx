@@ -49,7 +49,7 @@ export default function FindCrew(producer) {
       <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            Find Your Perfect Crew
+            Find the Perfect Crew
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-xl">
             Connect with top talent in the industry and bring your projects to life.
