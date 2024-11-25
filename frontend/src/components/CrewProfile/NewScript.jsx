@@ -120,7 +120,7 @@ const NewScriptPost = () => {
               />
             </div>
             <div>
-              <label htmlFor="budget" className="block text-sm font-medium text-gray-700">Budget</label>
+              <label htmlFor="budget" className="block text-sm font-medium text-gray-700">Desired Budget</label>
               <input
                 type="number"
                 id="budget"
@@ -181,7 +181,7 @@ const NewScriptPost = () => {
                   type="text"
                   value={position.role}
                   onChange={(e) => handleCrewPositionChange(index, 'role', e.target.value)}
-                  placeholder="Role"
+                  placeholder="Required Talent"
                   className="flex-1 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
                 <input
