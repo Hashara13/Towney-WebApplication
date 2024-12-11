@@ -5,7 +5,7 @@ const ScriptSchema = new mongoose.Schema({
   description: { type: String, required: true }, 
   genre: { type: String, required: true }, 
   scriptFile: { type: String, required: true }, 
-  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, 
+  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, 
   budget: { type: Number, required: true }, 
   location: { type: String, required: true }, 
   crewPositions: [{ 
