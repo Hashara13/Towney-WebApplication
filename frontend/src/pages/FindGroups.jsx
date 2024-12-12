@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 
-export default function Component() {
+export default function CollaborateWithTeams() {
   const [groups, setGroups] = useState([]);
   const [filterGroups, setFilterGroups] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -48,16 +49,41 @@ export default function Component() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100"
+    >
+      <motion.div
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+          <motion.h1
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-500"
+          >
             Collaborate with Expert Teams
-          </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-2xl">
+          </motion.h1>
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="mt-6 max-w-2xl mx-auto text-2xl text-gray-200"
+          >
             Join with industry-leading professionals to achieve success.
-          </p>
-          <div className="mt-10 max-w-lg mx-auto">
+          </motion.p>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="mt-10 max-w-lg mx-auto"
+          >
             <div className="flex items-center bg-white rounded-lg overflow-hidden shadow-md">
               <input
                 type="text"
@@ -66,36 +92,58 @@ export default function Component() {
                 onChange={handleSearch}
                 className="flex-grow px-6 py-4 text-gray-700 focus:outline-none"
               />
-              <button className="bg-purple-500 text-white px-6 py-4 hover:bg-purple-600 transition-colors">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-purple-500 text-white px-6 py-4 hover:bg-purple-600 transition-colors"
+              >
                 Search
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+            role="alert"
+          >
             <strong className="font-bold">Error: </strong>
             <span className="block sm:inline">{error}</span>
-          </div>
+          </motion.div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {filterGroups.map((group, index) => (
-            <div
+            <motion.div
               key={group._id || index}
-              className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              whileHover={{ scale: 1.03, boxShadow: "0 10px 20px rgba(0,0,0,0.1)" }}
+              className="bg-white rounded-lg shadow-md overflow-hidden"
             >
               <div className="p-6">
-                <div className="flex items-center mb-2">
-                  <div>
-                    <p className="text-xl font-semibold text-gray-900 hover:text-purple-600 transition-colors">
-                      {group.groupName}
-                    </p>
-                  
-                  </div>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-2xl font-semibold text-gray-900 hover:text-purple-600 transition-colors">
+                    {group.groupName}
+                  </h2>
+                  <span className="text-sm font-medium text-purple-600 bg-purple-100 px-2 py-1 rounded-full">
+                    {group.location}
+                  </span>
                 </div>
-                <div className="flex items-center mb-2">
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  {group.description || "Expert team ready to tackle your projects."}
+                </p>
+                <div className="flex items-center mb-4">
                   <div className="flex items-center bg-yellow-100 rounded-full px-3 py-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -111,19 +159,28 @@ export default function Component() {
                     ({Math.floor(Math.random() * 50) + 10} reviews)
                   </span>
                 </div>
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center mb-4">
                   <p className="text-lg font-bold text-gray-900">
                     {group.cost}
-                    <span className="text-sm font-normal text-gray-500">
-                      /wk
-                    </span>
+                    <span className="text-sm font-normal text-gray-500">/wk</span>
+                  </p>
+                  <p className="text-sm font-medium text-gray-600">
+                    {group.members?.length || 0} members
                   </p>
                 </div>
                 <div className="flex justify-between items-center">
-                  <button className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  >
                     Hire Now
-                  </button>
-                  <button className="text-gray-400 hover:text-purple-500 transition-colors">
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="text-gray-400 hover:text-purple-500 transition-colors"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -138,13 +195,14 @@ export default function Component() {
                         d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
                       />
                     </svg>
-                  </button>
+                  </motion.button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
+
