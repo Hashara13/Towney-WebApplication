@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-// import ProfilePhoto from "../components/specific/profilePhoto";
-import ProFicImage from "../assets/images/logos/pro.jpg";
+import { motion } from "framer-motion";
 
 export default function FindCrew(producer) {
-  // const profileImage = ProfilePhoto(producer.name);
   const [producers, setProducers] = useState([]);
   const [fileterProducers, setfileterProducers] = useState([]);
   const [searchText, setSearchTexts] = useState("");
@@ -46,15 +44,35 @@ export default function FindCrew(producer) {
 
   return (
     <div className="flex-1 bg-gray-100 min-h-screen">
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+      <motion.div 
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+          <motion.h1 
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl"
+          >
             Find the Perfect Crew
-          </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-xl">
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="mt-6 max-w-2xl mx-auto text-xl"
+          >
             Connect with top talent in the industry and bring your projects to life.
-          </p>
-          <div className="mt-10 max-w-lg mx-auto">
+          </motion.p>
+          <motion.div 
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="mt-10 max-w-lg mx-auto"
+          >
             <div className="flex items-center bg-white rounded-lg overflow-hidden shadow-md">
               <input
                 type="text"
@@ -67,29 +85,39 @@ export default function FindCrew(producer) {
                 Search
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {fileterProducers.map((producer, index) => (
-            <div
+            <motion.div
               key={producer._id || index}
-              className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              className="bg-white rounded-lg shadow-md overflow-hidden"
             >
               <div className="p-6">
                 <div className="flex items-center mb-4">
-                <img
-            src={ProFicImage}
-            alt={`${producer.name}'s profile`}
-            className="w-16 h-16 rounded-full object-cover mr-4"
-          />
+                  <motion.img
+                    whileHover={{ scale: 1.1 }}
+                    src={`https://picsum.photos/seed/${producer._id || index}/200/200`}
+                    alt={`${producer.name}'s profile`}
+                    className="w-16 h-16 rounded-full object-cover mr-4 border-2 border-purple-500"
+                  />
                   <div>
                     <Link to={`/profile/${producer._id}`} className="text-xl font-semibold text-gray-900 hover:text-purple-600 transition-colors">
                       {producer.name}
                     </Link>
-                    <p className="flex-start text-sm text-purple-600 font-medium">{producer.performRole}</p>
+                    <p className="text-sm text-purple-600 font-medium">{producer.performRole}</p>
                   </div>
                 </div>
                 <div className="flex items-center mb-2">
@@ -108,22 +136,35 @@ export default function FindCrew(producer) {
                   <p className="text-lg font-bold text-gray-900">$1,900<span className="text-sm font-normal text-gray-500">/wk</span></p>
                 </div>
                 <div className="flex justify-between items-center">
-                  <button className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  >
                     Hire Now
-                  </button>
-                  <button className="text-gray-400 hover:text-purple-500 transition-colors">
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="text-gray-400 hover:text-purple-500 transition-colors"
+                  >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                     </svg>
-                  </button>
+                  </motion.button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
-      <div className="bg-gray-50 border-t border-gray-200">
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="bg-gray-50 border-t border-gray-200"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
             Ready to Build Your Dream Team?
@@ -132,13 +173,17 @@ export default function FindCrew(producer) {
             Join our network and connect with top professionals in the industry.
           </p>
           <Link to="/create">
-
-          <button className="bg-purple-600 text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-            Get Started
-          </button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-purple-600 text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+            >
+              Get Started
+            </motion.button>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
+
