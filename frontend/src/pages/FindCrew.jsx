@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 // import ProfilePhoto from "../components/specific/profilePhoto";
-import ProFicImage from "../assets/images/logos/pro.jpg";
+// Remove this line:
+// import ProFicImage from "../assets/images/logos/pro.jpg";
 
 export default function FindCrew(producer) {
   // const profileImage = ProfilePhoto(producer.name);
@@ -81,10 +82,10 @@ export default function FindCrew(producer) {
               <div className="p-6">
                 <div className="flex items-center mb-4">
                 <img
-            src={ProFicImage}
-            alt={`${producer.name}'s profile`}
-            className="w-16 h-16 rounded-full object-cover mr-4"
-          />
+                  src={`https://picsum.photos/seed/${producer._id || index}/200/200`}
+                  alt={`${producer.name}'s profile`}
+                  className="w-16 h-16 rounded-full object-cover mr-4"
+                />
                   <div>
                     <Link to={`/profile/${producer._id}`} className="text-xl font-semibold text-gray-900 hover:text-purple-600 transition-colors">
                       {producer.name}
@@ -142,3 +143,4 @@ export default function FindCrew(producer) {
     </div>
   );
 }
+
