@@ -174,7 +174,7 @@ export default function CollaborateWithTeams() {
                     whileTap={{ scale: 0.95 }}
                     className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
-                    Hire Now
+                    Hire
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.1 }}
