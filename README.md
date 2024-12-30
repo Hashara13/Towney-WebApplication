@@ -12,7 +12,7 @@ Towney is an innovative platform that helps content creators find & connect with
 - **Manage Projects**: Track progress, timelines, and milestones from start to finish.
 - **Real-Time Updates**: Stay updated with project developments and changes through live notifications.
 
-## Technologies Used
+## Technologies & Frameworks Used
 
 - **Frontend**: React.js, Tailwind CSS
 - **Backend**: Node.js, Express.js, MongoDB
