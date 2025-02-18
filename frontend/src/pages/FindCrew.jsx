@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import h1Image from '../assets/images/h2.jpg';
 
 export default function FindCrew(producer) {
   const [producers, setProducers] = useState([]);
@@ -44,11 +45,19 @@ export default function FindCrew(producer) {
 
   return (
     <div className="flex-1 bg-gray-100 min-h-screen">
+      
       <motion.div 
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white"
+      
+  style={{
+    backgroundImage: `url(${h1Image})`,
+    backgroundSize: 'cover', 
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat', 
+  }}       
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
           <motion.h1 
@@ -79,9 +88,9 @@ export default function FindCrew(producer) {
                 placeholder="Search crew members"
                 value={searchText}
                 onChange={handleSearch}
-                className="flex-grow px-6 py-4 text-gray-700 focus:outline-none"
+                className="flex-grow px-6 py-3 text-gray-700 focus:outline-none"
               />
-              <button className="bg-purple-500 text-white px-6 py-4 hover:bg-purple-600 transition-colors">
+              <button className="bg-purple-500 text-white px-6 py-3 hover:bg-purple-600 transition-colors">
                 Search
               </button>
             </div>
