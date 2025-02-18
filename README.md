@@ -3,7 +3,7 @@
   <img src="./frontend//src//assets//images//logos/lg-2.png" alt="Towney Logo" width="300" />
 </p> 
 
-Towney is an innovative platform that helps content creators find and connect with top production teams to turn their scripts and ideas into reality. Whether you're working on a film, advertisement, or any media project, Towney simplifies the process of bringing your vision to life.
+Towney, An innovative platform that helps content creators find & connect with top production teams to turn their scripts and ideas into reality. Whether you're working on a film, advertisement, or any media project, Towney simplifies the process of bringing your vision to life in content cretion.
 
 ## Features
 
@@ -12,7 +12,7 @@ Towney is an innovative platform that helps content creators find and connect wi
 - **Manage Projects**: Track progress, timelines, and milestones from start to finish.
 - **Real-Time Updates**: Stay updated with project developments and changes through live notifications.
 
-## Technologies Used
+## Technologies & Frameworks Used
 
 - **Frontend**: React.js, Tailwind CSS
 - **Backend**: Node.js, Express.js, MongoDB
